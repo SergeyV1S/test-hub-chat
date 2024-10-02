@@ -17,7 +17,7 @@
 4. Создайте .env файл и впишите url сервера:
 
    ```bash
-   BASE_API_URL=http://localhost:8000/api
+   BASE_API_URL=http://your_backend_url
    ```
 
 5. Запустите стартер
