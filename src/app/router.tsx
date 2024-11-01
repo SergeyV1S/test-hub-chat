@@ -1,4 +1,4 @@
-import { AuthLayout, SignInPage, SignUpPage } from "@modules/auth";
+import { AuthLayout, SignInPage, SignUpPage, YandexCallback } from "@modules/auth";
 import { ProfilePage } from "@modules/user/profile";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -24,6 +24,10 @@ export const routes = createBrowserRouter([
   {
     path: "/",
     element: <RootPage />
+  },
+  {
+    path: PATHS.OAUTH_YANDEX,
+    element: <YandexCallback />
   },
   {
     element: <PrivateRoute />,
