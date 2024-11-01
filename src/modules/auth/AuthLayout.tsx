@@ -8,7 +8,7 @@ export const AuthLayout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuth) {
+    if (isAuth && isAuth === "false") {
       navigate(-1);
     }
   }, []);

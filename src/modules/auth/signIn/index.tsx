@@ -66,7 +66,7 @@ export const SignInPage = () => {
         )}
         <Link
           className=''
-          to={`https://oauth.yandex.ru/authorize?response_type=code&client_id=${import.meta.env.YANDEX_CLIENT_ID}&redirect_uri=${import.meta.env.YANDEX_REDIRECT_URI}`}
+          to={`${import.meta.env.BASE_YANDEX_API_URL}/authorize?response_type=code&client_id=${import.meta.env.YANDEX_CLIENT_ID}&redirect_uri=${import.meta.env.YANDEX_REDIRECT_URI}`}
         >
           <img className='size-10' src='/Yandex_icon.png' alt='yandex' />
         </Link>
