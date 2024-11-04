@@ -1,11 +1,17 @@
-import { AuthLayout, SignInPage, SignUpPage } from "@modules/auth";
-import { ProfilePage } from "@modules/user/profile";
+import { AuthLayout } from "@modules/auth";
+import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import { PATHS } from "@shared/constants";
+import { Spinner } from "@shared/ui/spinner";
 
 import { PrivateRoute } from "./PrivateRoute";
-import { RootPage } from "./RootPage";
+
+const RootScreen = lazy(() => import("./RootPage"));
+const YandexCallbackScreen = lazy(() => import("@modules/auth/oAuth/Yandex/Yandex"));
+const SignInScreen = lazy(() => import("@modules/auth/signIn/"));
+const SignUpScreen = lazy(() => import("@modules/auth/signUp"));
+const ProfileScreen = lazy(() => import("@modules/user/profile"));
 
 export const routes = createBrowserRouter([
   {
@@ -13,24 +19,48 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: PATHS.SIGNIN,
-        element: <SignInPage />
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <SignInScreen />
+          </Suspense>
+        )
       },
       {
         path: PATHS.SIGNUP,
-        element: <SignUpPage />
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <SignUpScreen />
+          </Suspense>
+        )
       }
     ]
   },
   {
     path: "/",
-    element: <RootPage />
+    element: (
+      <Suspense fallback={<Spinner />}>
+        <RootScreen />
+      </Suspense>
+    )
+  },
+  {
+    path: PATHS.OAUTH_YANDEX,
+    element: (
+      <Suspense fallback={<Spinner />}>
+        <YandexCallbackScreen />
+      </Suspense>
+    )
   },
   {
     element: <PrivateRoute />,
     children: [
       {
         path: PATHS.PROFILE,
-        element: <ProfilePage />
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <ProfileScreen />
+          </Suspense>
+        )
       }
     ]
   }
