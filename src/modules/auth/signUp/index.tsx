@@ -1,21 +1,20 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { PatternFormat } from "react-number-format";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import type { z } from "zod";
 
-import { AUTH_KEY, PATHS } from "@shared/constants";
-import { toast } from "@shared/lib/hooks/use-toast";
+import { PATHS } from "@shared/constants";
 import { Button } from "@shared/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@shared/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shared/ui/form";
 import { Input } from "@shared/ui/input";
 import { PasswordInput } from "@shared/ui/password-input";
 
-import { usePostRegisterMutation } from "./api/usePostCreateUser";
 import { signUpSchema } from "./lib/signUpSchema";
+import { useSignUp } from "./model/useSignUp";
 
-export const SignUpPage = () => {
+const SignUpPage = () => {
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -29,44 +28,7 @@ export const SignUpPage = () => {
     }
   });
 
-  const navigate = useNavigate();
-
-  const registerMutation = usePostRegisterMutation({
-    options: {
-      onSuccess: () => {
-        localStorage.setItem(AUTH_KEY, "true");
-        navigate(PATHS.PROFILE);
-      },
-      onError(error) {
-        if (error?.response?.data?.message) {
-          toast({
-            className: "bg-red-800 text-white hover:bg-red-700",
-            title: "Ошибка регистрации",
-            description: `${error.response.data.message}`
-          });
-        } else {
-          toast({
-            className: "bg-red-800 text-white hover:bg-red-700",
-            title: "Не удалось выполнить запрос"
-          });
-        }
-      }
-    }
-  });
-
-  const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
-    const { firstName, mail, password, phone, role, secondName } = values;
-    await registerMutation.mutateAsync({
-      params: {
-        firstName: firstName,
-        mail: mail,
-        password: password,
-        phone: phone,
-        role: role.toUpperCase(),
-        secondName: secondName
-      }
-    });
-  };
+  const { onSubmit, registerMutation } = useSignUp();
 
   const isDisabled =
     !form.formState.dirtyFields.firstName ||
@@ -192,3 +154,5 @@ export const SignUpPage = () => {
     </Card>
   );
 };
+
+export default SignUpPage;

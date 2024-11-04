@@ -2,7 +2,7 @@ import { LogoutButton } from "@modules/auth";
 
 import { useGetProfileQuery } from "../api/hooks/useGetProfileQuery";
 
-export const ProfilePage = () => {
+const ProfilePage = () => {
   const { data, isPending } = useGetProfileQuery({});
 
   if (isPending) return <div className=''>Загрузка...</div>;
@@ -18,3 +18,5 @@ export const ProfilePage = () => {
     </div>
   );
 };
+
+export default ProfilePage;
