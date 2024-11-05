@@ -1,13 +1,11 @@
 import { api } from "@shared/api/instance";
 import { AUTH_KEY, PATHS } from "@shared/constants";
 
-interface IPostYandexoAuthParams {
-  code: string;
-}
+import type { IoAuthResponse } from "../types";
 
-export type TPostYandexoAuthConfig = RequestConfig<IPostYandexoAuthParams>;
+export type TPostoAuthConfig = RequestConfig<IoAuthResponse>;
 
-export const postYandexoAuth = async ({ params, config }: TPostYandexoAuthConfig) =>
+export const postoAuth = async ({ params, config }: TPostoAuthConfig) =>
   api
     .post(`auth/oAuth`, params, config)
     .then(() => {

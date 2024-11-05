@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { PATHS } from "@shared/constants";
+import { generateUUIDv4 } from "@shared/lib/generateUUIDv4";
 import { Card, CardContent, CardHeader, CardTitle } from "@shared/ui/card";
 
 import { EmailForm } from "./_components/EmailForm";
@@ -37,7 +38,7 @@ const SignInPage = () => {
         )}
         <div className='flex justify-center items-center mt-3'>
           <Link
-            to={`${import.meta.env.BASE_YANDEX_API_URL}/authorize?response_type=code&client_id=${import.meta.env.YANDEX_CLIENT_ID}&redirect_uri=${import.meta.env.YANDEX_REDIRECT_URI}`}
+            to={`${import.meta.env.BASE_YANDEX_API_URL}/authorize?response_type=code&client_id=${import.meta.env.YANDEX_CLIENT_ID}&redirect_uri=${import.meta.env.YANDEX_REDIRECT_URI}&device_id=${generateUUIDv4()}`}
           >
             <img className='size-10' src='/Yandex_icon.png' alt='yandex_oAuth' />
           </Link>
