@@ -1,6 +1,6 @@
 export enum EoAuth {
-  YANDEX = "Yandex",
-  VK = "VK"
+  YANDEX = "YandexApi",
+  VK = "VKApi"
 }
 
 export interface IoAuthResponse {
