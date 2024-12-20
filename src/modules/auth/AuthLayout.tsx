@@ -11,7 +11,7 @@ export const AuthLayout = () => {
     if (isAuth && isAuth === "false") {
       navigate(-1);
     }
-  }, []);
+  }, [isAuth, navigate]);
 
   return (
     <main className='flex min-h-svh'>

@@ -115,7 +115,7 @@ const SignUpPage = () => {
                 <FormItem>
                   <FormLabel>Пароль*</FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder='Введите пароль' {...field} />
+                    <PasswordInput autoComplete='off' placeholder='Введите пароль' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -128,7 +128,7 @@ const SignUpPage = () => {
                 <FormItem>
                   <FormLabel>Подтвердите пароль*</FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder='Введите пароль' {...field} />
+                    <PasswordInput autoComplete='off' placeholder='Введите пароль' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

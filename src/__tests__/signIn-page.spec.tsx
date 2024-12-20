@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-commented-out-tests */
 // import SignInPage from "@modules/auth/signIn";
 // import { render, screen, waitFor } from "@testing-library/react";
 

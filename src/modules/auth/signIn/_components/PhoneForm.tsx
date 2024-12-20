@@ -55,7 +55,7 @@ export const PhoneForm = ({ onSubmit, switchForm, isPending }: PhoneFormProps) =
             <FormItem>
               <FormLabel>Пароль</FormLabel>
               <FormControl>
-                <PasswordInput placeholder='Введите пароль' {...field} />
+                <PasswordInput autoComplete='off' placeholder='Введите пароль' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
