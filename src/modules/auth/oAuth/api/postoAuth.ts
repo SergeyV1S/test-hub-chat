@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { api } from "@shared/api/instance";
 import { AUTH_KEY, PATHS } from "@shared/constants";
 

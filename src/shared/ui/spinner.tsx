@@ -3,6 +3,7 @@ import { LoadingIcon } from "@shared/icons/LoginIcon";
 interface ISpinnerProps {
   children?: React.ReactNode;
   size?: number;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
 export const Spinner = ({ children, size }: ISpinnerProps) => (
