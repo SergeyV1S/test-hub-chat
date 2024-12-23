@@ -5,6 +5,7 @@ import { AUTH_KEY, PATHS } from "@shared/constants";
 import { toast } from "@shared/lib/hooks/use-toast";
 
 import { usePostRegisterMutation } from "../api/usePostCreateUser";
+import { formatePhone } from "../lib/formatePhone";
 import type { signUpSchema } from "../lib/signUpSchema";
 
 export const useSignUp = () => {
@@ -35,12 +36,14 @@ export const useSignUp = () => {
 
   const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
     const { firstName, mail, password, phone, role, secondName } = values;
+    const formatedPhone = formatePhone(phone);
+
     await registerMutation.mutateAsync({
       params: {
         firstName: firstName,
         mail: mail,
         password: password,
-        phone: phone,
+        phone: formatedPhone,
         role: role.toUpperCase(),
         secondName: secondName
       }

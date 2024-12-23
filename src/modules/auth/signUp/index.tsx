@@ -1,8 +1,5 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { PatternFormat } from "react-number-format";
 import { Link } from "react-router-dom";
-import type { z } from "zod";
 
 import { PATHS } from "@shared/constants";
 import { Button } from "@shared/ui/button";
@@ -11,32 +8,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@shared/ui/input";
 import { PasswordInput } from "@shared/ui/password-input";
 
-import { signUpSchema } from "./lib/signUpSchema";
 import { useSignUp } from "./model/useSignUp";
+import { useSignUpForm } from "./model/useSignUpForm";
 
 const SignUpPage = () => {
-  const form = useForm<z.infer<typeof signUpSchema>>({
-    resolver: zodResolver(signUpSchema),
-    defaultValues: {
-      firstName: "",
-      secondName: "",
-      phone: "",
-      role: "user",
-      mail: "",
-      password: "",
-      confirmPassword: ""
-    }
-  });
-
   const { onSubmit, registerMutation } = useSignUp();
-
-  const isDisabled =
-    !form.formState.dirtyFields.firstName ||
-    !form.formState.dirtyFields.confirmPassword ||
-    !form.formState.dirtyFields.mail ||
-    !form.formState.dirtyFields.password ||
-    !form.formState.dirtyFields.phone ||
-    !form.formState.dirtyFields.secondName;
+  const { isDisabled, signUpForm } = useSignUpForm();
 
   return (
     <Card className='m-auto w-full max-w-fit'>
@@ -45,11 +22,11 @@ const SignUpPage = () => {
         <CardDescription>Введите свои данные для создания учетной записи</CardDescription>
       </CardHeader>
       <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className='grid gap-4'>
+        <Form {...signUpForm}>
+          <form onSubmit={signUpForm.handleSubmit(onSubmit)} className='grid gap-4'>
             <div className='flex items-center gap-5'>
               <FormField
-                control={form.control}
+                control={signUpForm.control}
                 name='firstName'
                 render={({ field }) => (
                   <FormItem>
@@ -62,7 +39,7 @@ const SignUpPage = () => {
                 )}
               />
               <FormField
-                control={form.control}
+                control={signUpForm.control}
                 name='secondName'
                 render={({ field }) => (
                   <FormItem>
@@ -76,7 +53,7 @@ const SignUpPage = () => {
               />
             </div>
             <FormField
-              control={form.control}
+              control={signUpForm.control}
               name='phone'
               render={({ field }) => (
                 <FormItem>
@@ -96,7 +73,7 @@ const SignUpPage = () => {
               )}
             />
             <FormField
-              control={form.control}
+              control={signUpForm.control}
               name='mail'
               render={({ field }) => (
                 <FormItem>
@@ -109,7 +86,7 @@ const SignUpPage = () => {
               )}
             />
             <FormField
-              control={form.control}
+              control={signUpForm.control}
               name='password'
               render={({ field }) => (
                 <FormItem>
@@ -122,7 +99,7 @@ const SignUpPage = () => {
               )}
             />
             <FormField
-              control={form.control}
+              control={signUpForm.control}
               name='confirmPassword'
               render={({ field }) => (
                 <FormItem>
