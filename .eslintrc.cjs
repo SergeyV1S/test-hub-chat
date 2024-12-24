@@ -1,20 +1,18 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true, "jest/globals": true },
+  env: { browser: true, es2020: true },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/strict",
     "plugin:@typescript-eslint/stylistic",
     "plugin:react-hooks/recommended",
     "plugin:react/recommended",
-    "plugin:jest/recommended",
-    "plugin:cypress/recommended",
     "plugin:react/jsx-runtime",
     "prettier"
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh", "react", "@typescript-eslint", "jest", "cypress"],
+  plugins: ["react-refresh", "react", "@typescript-eslint"],
   root: true,
   rules: {
     "react/prop-types": "off",
@@ -29,7 +27,6 @@ module.exports = {
     "@typescript-eslint/no-empty-interface": "off",
     "no-empty-function": "off",
     "@typescript-eslint/no-empty-function": "error",
-    "@conarti/feature-sliced/absolute-relative": "off",
     "arrow-body-style": ["error", "as-needed"],
     "react/self-closing-comp": ["error", { component: true, html: true }],
     "@typescript-eslint/consistent-type-imports": [
