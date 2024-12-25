@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { TFunctionNonStrict } from "i18next";
 import { useForm } from "react-hook-form";
 import { PatternFormat } from "react-number-format";
 import type { z } from "zod";
@@ -14,9 +15,10 @@ interface PhoneFormProps {
   onSubmit: (values: z.infer<typeof signInPhoneSchema>) => Promise<void>;
   switchForm: () => void;
   isPending: boolean;
+  t: TFunctionNonStrict<"translation", undefined>;
 }
 
-export const PhoneForm = ({ onSubmit, switchForm, isPending }: PhoneFormProps) => {
+export const PhoneForm = ({ onSubmit, switchForm, isPending, t }: PhoneFormProps) => {
   const signInPhoneForm = useForm<z.infer<typeof signInPhoneSchema>>({
     resolver: zodResolver(signInPhoneSchema),
     defaultValues: {
@@ -33,11 +35,11 @@ export const PhoneForm = ({ onSubmit, switchForm, isPending }: PhoneFormProps) =
           name='phone'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Номер телефона</FormLabel>
+              <FormLabel>{t("general.phone")}</FormLabel>
               <FormControl>
                 <Input
                   type='text'
-                  placeholder='Введите номер телефона'
+                  placeholder={t("general.phone")}
                   format='+7 (###) ### ## ##'
                   mask='_'
                   component={PatternFormat}
@@ -53,16 +55,16 @@ export const PhoneForm = ({ onSubmit, switchForm, isPending }: PhoneFormProps) =
           name='password'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Пароль</FormLabel>
+              <FormLabel>{t("general.password")}</FormLabel>
               <FormControl>
-                <PasswordInput autoComplete='off' placeholder='Введите пароль' {...field} />
+                <PasswordInput autoComplete='off' placeholder={t("general.password")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button onClick={switchForm} size='sm' variant='link' type='button'>
-          Войти по электронной почте
+          {t("sign-in.sign_in_with_email")}
         </Button>
         <Button
           disabled={
@@ -73,7 +75,7 @@ export const PhoneForm = ({ onSubmit, switchForm, isPending }: PhoneFormProps) =
           type='submit'
           className='w-full'
         >
-          Войти
+          {t("sign-in.title")}
         </Button>
       </form>
     </Form>

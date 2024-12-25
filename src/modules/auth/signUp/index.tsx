@@ -45,9 +45,9 @@ const SignUpPage = () => {
                 name='secondName'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t("general.second-name")}*</FormLabel>
+                    <FormLabel>{t("general.second_name")}*</FormLabel>
                     <FormControl>
-                      <Input placeholder={t("general.second-name")} {...field} />
+                      <Input placeholder={t("general.second_name")} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -109,7 +109,7 @@ const SignUpPage = () => {
               type='submit'
               className='w-full'
             >
-              {t("sign-up.create-account")}
+              {t("sign-up.create_account")}
             </Button>
           </form>
         </Form>
@@ -117,7 +117,7 @@ const SignUpPage = () => {
         <p className='mt-4 text-center text-sm'>
           {t("sign-up.already_have_account")}{" "}
           <Link to={PATHS.SIGNIN} className='underline'>
-            {t("sign-up.sign-in")}
+            {t("sign-up.sign_in")}
           </Link>
         </p>
       </CardContent>

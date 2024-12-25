@@ -1,8 +1,8 @@
 {
   "general": {
     "name": "Name",
-    "second-name": "Second name",
-    "phone": "Phone",
+    "second_name": "Second name",
+    "phone": "Phone number",
     "mail": "Email",
     "password": "Password"
   },
@@ -13,7 +13,14 @@
     "title": "Registration",
     "description": "Enter your details to create an account",
     "already_have_account": "Already have an account?",
-    "sign-in": "Sign in",
-    "create-account": "Create an account"
+    "sign_in": "Sign in",
+    "create_account": "Create an account"
+  },
+  "sign-in": {
+    "title": "Sign in",
+    "dont_have_account": "Don't have an account?",
+    "sign-up": "Sign up",
+    "sign_in_with_email": "Sign in with Email",
+    "sign_in_with_phone": "Sign in with Phone Number"
   }
 }
