@@ -1,9 +1,19 @@
 {
+  "general": {
+    "name": "Name",
+    "second-name": "Second name",
+    "phone": "Phone",
+    "mail": "Email",
+    "password": "Password"
+  },
   "root": {
     "title": "Hello"
   },
   "sign-up": {
     "title": "Registration",
-    "description": "Enter your details to create an account"
+    "description": "Enter your details to create an account",
+    "already_have_account": "Already have an account?",
+    "sign-in": "Sign in",
+    "create-account": "Create an account"
   }
 }

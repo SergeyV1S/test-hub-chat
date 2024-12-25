@@ -32,9 +32,9 @@ const SignUpPage = () => {
                 name='firstName'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Имя*</FormLabel>
+                    <FormLabel>{t("general.name")}*</FormLabel>
                     <FormControl>
-                      <Input placeholder='Введите имя' {...field} />
+                      <Input placeholder={t("general.name")} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -45,9 +45,9 @@ const SignUpPage = () => {
                 name='secondName'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Фамилия*</FormLabel>
+                    <FormLabel>{t("general.second-name")}*</FormLabel>
                     <FormControl>
-                      <Input placeholder='Введите фамилию' {...field} />
+                      <Input placeholder={t("general.second-name")} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -59,11 +59,11 @@ const SignUpPage = () => {
               name='phone'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Номер телефона*</FormLabel>
+                  <FormLabel>{t("general.phone")}*</FormLabel>
                   <FormControl>
                     <Input
                       type='text'
-                      placeholder='Номер телефона'
+                      placeholder={t("general.phone")}
                       format='+7 (###) ### ## ##'
                       mask='_'
                       component={PatternFormat}
@@ -79,9 +79,9 @@ const SignUpPage = () => {
               name='mail'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email*</FormLabel>
+                  <FormLabel>{t("general.mail")}*</FormLabel>
                   <FormControl>
-                    <Input placeholder='Введите почту' {...field} />
+                    <Input placeholder={t("general.mail")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -92,22 +92,13 @@ const SignUpPage = () => {
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Пароль*</FormLabel>
+                  <FormLabel>{t("general.password")}*</FormLabel>
                   <FormControl>
-                    <PasswordInput autoComplete='off' placeholder='Введите пароль' {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={signUpForm.control}
-              name='confirmPassword'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Подтвердите пароль*</FormLabel>
-                  <FormControl>
-                    <PasswordInput autoComplete='off' placeholder='Введите пароль' {...field} />
+                    <PasswordInput
+                      autoComplete='off'
+                      placeholder={t("general.password")}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -118,17 +109,17 @@ const SignUpPage = () => {
               type='submit'
               className='w-full'
             >
-              Создать учетную запись
+              {t("sign-up.create-account")}
             </Button>
           </form>
         </Form>
 
-        <div className='mt-4 text-center text-sm'>
-          У вас уже есть учетная запись?{" "}
+        <p className='mt-4 text-center text-sm'>
+          {t("sign-up.already_have_account")}{" "}
           <Link to={PATHS.SIGNIN} className='underline'>
-            Войти
+            {t("sign-up.sign-in")}
           </Link>
-        </div>
+        </p>
       </CardContent>
     </Card>
   );

@@ -13,14 +13,12 @@ export const useSignUpForm = () => {
       phone: "",
       role: "user",
       mail: "",
-      password: "",
-      confirmPassword: ""
+      password: ""
     }
   });
 
   const isDisabled =
     !signUpForm.formState.dirtyFields.firstName ||
-    !signUpForm.formState.dirtyFields.confirmPassword ||
     !signUpForm.formState.dirtyFields.mail ||
     !signUpForm.formState.dirtyFields.password ||
     !signUpForm.formState.dirtyFields.phone ||
