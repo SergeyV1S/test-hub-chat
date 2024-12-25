@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { PatternFormat } from "react-number-format";
 import { Link } from "react-router-dom";
 
@@ -14,12 +15,13 @@ import { useSignUpForm } from "./model/useSignUpForm";
 const SignUpPage = () => {
   const { onSubmit, registerMutation } = useSignUp();
   const { isDisabled, signUpForm } = useSignUpForm();
+  const { t } = useTranslation();
 
   return (
     <Card className='m-auto w-full max-w-fit'>
       <CardHeader>
-        <CardTitle className='text-xl'>Регистрация</CardTitle>
-        <CardDescription>Введите свои данные для создания учетной записи</CardDescription>
+        <CardTitle className='text-xl'>{t("sign-up.title")}</CardTitle>
+        <CardDescription>{t("sign-up.description")}</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...signUpForm}>

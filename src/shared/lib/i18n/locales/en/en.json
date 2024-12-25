@@ -1,0 +1,9 @@
+{
+  "root": {
+    "title": "Hello"
+  },
+  "sign-up": {
+    "title": "Registration",
+    "description": "Enter your details to create an account"
+  }
+}
