@@ -108,6 +108,7 @@ const SignUpPage = () => {
               disabled={registerMutation.isPending || isDisabled}
               type='submit'
               className='w-full'
+              data-testid='sign_in_button'
             >
               {t("sign-up.create_account")}
             </Button>
