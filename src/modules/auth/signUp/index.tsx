@@ -34,9 +34,13 @@ const SignUpPage = () => {
                   <FormItem>
                     <FormLabel>{t("general.name")}*</FormLabel>
                     <FormControl>
-                      <Input placeholder={t("general.name")} {...field} />
+                      <Input
+                        data-testid='sign_up_first_name_input'
+                        placeholder={t("general.name")}
+                        {...field}
+                      />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage data-testid='sign_up_first_name_form_message' />
                   </FormItem>
                 )}
               />
@@ -47,9 +51,13 @@ const SignUpPage = () => {
                   <FormItem>
                     <FormLabel>{t("general.second_name")}*</FormLabel>
                     <FormControl>
-                      <Input placeholder={t("general.second_name")} {...field} />
+                      <Input
+                        data-testid='sign_up_second_name_input'
+                        placeholder={t("general.second_name")}
+                        {...field}
+                      />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage data-testid='sign_up_second_name_form_message' />
                   </FormItem>
                 )}
               />
@@ -65,12 +73,13 @@ const SignUpPage = () => {
                       type='text'
                       placeholder={t("general.phone")}
                       format='+7 (###) ### ## ##'
+                      data-testid='sign_up_phone_input'
                       mask='_'
                       component={PatternFormat}
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage data-testid='sign_up_phone_form_message' />
                 </FormItem>
               )}
             />
@@ -81,9 +90,13 @@ const SignUpPage = () => {
                 <FormItem>
                   <FormLabel>{t("general.mail")}*</FormLabel>
                   <FormControl>
-                    <Input placeholder={t("general.mail")} {...field} />
+                    <Input
+                      data-testid='sign_up_mail_input'
+                      placeholder={t("general.mail")}
+                      {...field}
+                    />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage data-testid='sign_up_mail_form_message' />
                 </FormItem>
               )}
             />
@@ -96,11 +109,12 @@ const SignUpPage = () => {
                   <FormControl>
                     <PasswordInput
                       autoComplete='off'
+                      data-testid='sign_up_password_input'
                       placeholder={t("general.password")}
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage data-testid='sign_up_password_form_message' />
                 </FormItem>
               )}
             />
@@ -108,7 +122,7 @@ const SignUpPage = () => {
               disabled={registerMutation.isPending || isDisabled}
               type='submit'
               className='w-full'
-              data-testid='sign_in_button'
+              data-testid='sign_up_sign_in_button'
             >
               {t("sign-up.create_account")}
             </Button>

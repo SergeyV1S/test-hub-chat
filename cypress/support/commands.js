@@ -35,3 +35,7 @@
 //     }
 //   }
 // }
+
+Cypress.Commands.add("prepare", () => {
+  cy.intercept("POST", "api/auth/register", { fixture: "register" });
+});
