@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { formatePhone } from "./formatePhone";
+import { formatePhone } from "@shared/lib/formatePhone";
 
 export const signUpSchema = z.object({
   firstName: z.string(),
@@ -8,7 +8,7 @@ export const signUpSchema = z.object({
   phone: z.string().refine((phone) => {
     const formatedPhone = formatePhone(phone);
     return formatedPhone.length === 12;
-  }, "Неверный номер телефона."),
+  }, "Неверный номер телефона"),
   role: z.string(),
   mail: z.string().email({ message: "Неверный адрес электронной почты" }),
   password: z.string()

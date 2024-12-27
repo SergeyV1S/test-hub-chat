@@ -28,7 +28,11 @@ export const EmailForm = ({ onSubmit, switchForm, isPending, t }: MailFormProps)
 
   return (
     <Form {...signInMailForm}>
-      <form onSubmit={signInMailForm.handleSubmit(onSubmit)} className='grid gap-4'>
+      <form
+        onSubmit={signInMailForm.handleSubmit(onSubmit)}
+        className='grid gap-4'
+        data-testid='sign_in_mail_form'
+      >
         <FormField
           control={signInMailForm.control}
           name='mail'
@@ -36,9 +40,13 @@ export const EmailForm = ({ onSubmit, switchForm, isPending, t }: MailFormProps)
             <FormItem>
               <FormLabel>{t("general.mail")}</FormLabel>
               <FormControl>
-                <Input placeholder={t("general.mail")} {...field} />
+                <Input
+                  data-testid='sign_in_mail_input'
+                  placeholder={t("general.mail")}
+                  {...field}
+                />
               </FormControl>
-              <FormMessage />
+              <FormMessage data-testid='sign_in_mail_form_message' />
             </FormItem>
           )}
         />
@@ -49,9 +57,14 @@ export const EmailForm = ({ onSubmit, switchForm, isPending, t }: MailFormProps)
             <FormItem>
               <FormLabel>{t("general.password")}</FormLabel>
               <FormControl>
-                <PasswordInput autoComplete='off' placeholder={t("general.password")} {...field} />
+                <PasswordInput
+                  data-testid='sign_in_password_input'
+                  autoComplete='off'
+                  placeholder={t("general.password")}
+                  {...field}
+                />
               </FormControl>
-              <FormMessage />
+              <FormMessage data-testid='sign_in_password_form_message' />
             </FormItem>
           )}
         />
@@ -64,6 +77,7 @@ export const EmailForm = ({ onSubmit, switchForm, isPending, t }: MailFormProps)
             !signInMailForm.formState.dirtyFields.mail ||
             isPending
           }
+          data-testid='sign_in_submit_form_button'
           type='submit'
           className='w-full'
         >

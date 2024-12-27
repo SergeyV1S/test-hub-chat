@@ -29,7 +29,11 @@ export const PhoneForm = ({ onSubmit, switchForm, isPending, t }: PhoneFormProps
 
   return (
     <Form {...signInPhoneForm}>
-      <form onSubmit={signInPhoneForm.handleSubmit(onSubmit)} className='grid gap-4'>
+      <form
+        onSubmit={signInPhoneForm.handleSubmit(onSubmit)}
+        className='grid gap-4'
+        data-testid='sign_in_phone_form'
+      >
         <FormField
           control={signInPhoneForm.control}
           name='phone'
@@ -38,6 +42,7 @@ export const PhoneForm = ({ onSubmit, switchForm, isPending, t }: PhoneFormProps
               <FormLabel>{t("general.phone")}</FormLabel>
               <FormControl>
                 <Input
+                  data-testid='sign_in_phone_input'
                   type='text'
                   placeholder={t("general.phone")}
                   format='+7 (###) ### ## ##'
@@ -46,7 +51,7 @@ export const PhoneForm = ({ onSubmit, switchForm, isPending, t }: PhoneFormProps
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage data-testid='sign_in_phone_form_message' />
             </FormItem>
           )}
         />
@@ -57,7 +62,12 @@ export const PhoneForm = ({ onSubmit, switchForm, isPending, t }: PhoneFormProps
             <FormItem>
               <FormLabel>{t("general.password")}</FormLabel>
               <FormControl>
-                <PasswordInput autoComplete='off' placeholder={t("general.password")} {...field} />
+                <PasswordInput
+                  data-testid='sign_in_password_input'
+                  autoComplete='off'
+                  placeholder={t("general.password")}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -72,6 +82,7 @@ export const PhoneForm = ({ onSubmit, switchForm, isPending, t }: PhoneFormProps
             !signInPhoneForm.formState.dirtyFields.phone ||
             isPending
           }
+          data-testid='sign_in_submit_form_button'
           type='submit'
           className='w-full'
         >

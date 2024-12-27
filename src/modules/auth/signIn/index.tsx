@@ -49,8 +49,8 @@ const SignInPage = () => {
         </div>
         <div className='mt-4 text-center text-sm'>
           {t("sign-in.dont_have_account")}{" "}
-          <Link to={PATHS.SIGNUP} className='underline'>
-            {t("sign-in.title")}
+          <Link to={PATHS.SIGNUP} className='underline' data-testid='sign_in_link_to_sign_up'>
+            {t("sign-in.sign_up")}
           </Link>
         </div>
       </CardContent>

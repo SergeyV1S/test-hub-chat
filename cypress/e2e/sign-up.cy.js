@@ -50,7 +50,7 @@ describe("sign up tests", () => {
 
     cy.get(`${SIGN_UP_PHONE_FORM_MESSAGE}`)
       .should("exist")
-      .and("have.text", "Неверный номер телефона.");
+      .and("have.text", "Неверный номер телефона");
     cy.get(`${SIGN_UP_MAIL_FORM_MESSAGE}`)
       .should("exist")
       .and("have.text", "Неверный адрес электронной почты");
