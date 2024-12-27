@@ -28,3 +28,5 @@ export const SIGN_IN_PHONE_FORM_MESSAGE = "[data-testid=sign_in_phone_form_messa
 export const SIGN_IN_PASSWORD_FORM_MESSAGE = "[data-testid=sign_in_password_form_message]";
 export const SIGN_IN_SUBMIT_FORM_BUTTON = "[data-testid=sign_in_submit_form_button]";
 export const SIGN_IN_PHONE_INPUT = "[data-testid=sign_in_phone_input]";
+
+export const LOGOUT_BUTTON = "[data-testid=logout_button]";

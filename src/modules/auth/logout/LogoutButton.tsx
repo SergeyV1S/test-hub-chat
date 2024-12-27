@@ -17,5 +17,9 @@ export const LogoutButton = () => {
     }
   });
 
-  return <Button onClick={() => mutate({})}>Выйти</Button>;
+  return (
+    <Button data-testid='logout_button' onClick={() => mutate({})}>
+      Выйти
+    </Button>
+  );
 };
