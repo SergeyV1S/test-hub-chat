@@ -59,4 +59,32 @@ describe("sign in tests", () => {
       .should("exist")
       .and("contain.text", "Неверный номер телефона");
   });
+
+  it("should auth user by phone", async () => {
+    cy.get(`${SIGN_IN_MAIL_FORM} button`).eq(1).should("exist").click();
+
+    cy.get(`${SIGN_IN_PHONE_FORM}`).should("exist");
+    cy.get(`${SIGN_IN_PHONE_INPUT}`).type("+79999999999");
+    cy.get(`${SIGN_IN_PASSWORD_INPUT}`).type("themostSecretPassword123");
+    cy.get(`${SIGN_IN_SUBMIT_FORM_BUTTON}`).should("exist").and("not.be.disabled").click();
+
+    cy.url().should("include", TEST_CONSTANTS.PATHS.PROFILE);
+
+    await cy.getAllLocalStorage().then((result) => {
+      expect(result["http://localhost:5173"]).to.have.property(TEST_CONSTANTS.AUTH_KEY, "true");
+    });
+  });
+
+  it("should auth user by mail", async () => {
+    cy.get(`${SIGN_IN_MAIL_FORM}`).should("exist");
+    cy.get(`${SIGN_IN_MAIL_INPUT}`).type("test@mail.ru");
+    cy.get(`${SIGN_IN_PASSWORD_INPUT}`).type("themostSecretPassword123");
+    cy.get(`${SIGN_IN_SUBMIT_FORM_BUTTON}`).should("exist").and("not.be.disabled").click();
+
+    cy.url().should("include", TEST_CONSTANTS.PATHS.PROFILE);
+
+    await cy.getAllLocalStorage().then((result) => {
+      expect(result["http://localhost:5173"]).to.have.property(TEST_CONSTANTS.AUTH_KEY, "true");
+    });
+  });
 });

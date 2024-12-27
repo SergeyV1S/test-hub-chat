@@ -38,4 +38,6 @@
 
 Cypress.Commands.add("prepare", () => {
   cy.intercept("POST", "api/auth/register", { fixture: "register" });
+  cy.intercept("POST", "api/auth/login", { fixture: "login" });
+  cy.intercept("POST", "api/user/profile", { fixture: "profile" });
 });
