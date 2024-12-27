@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import { PATHS } from "@shared/constants";
@@ -15,11 +16,12 @@ const SignInPage = () => {
     onSubmit,
     posLoginMutation: { isPending }
   } = useSignIn();
+  const { t } = useTranslation();
 
   return (
     <Card className='m-auto w-full max-w-sm'>
       <CardHeader>
-        <CardTitle className='text-2xl'>Вход</CardTitle>
+        <CardTitle className='text-2xl'>{t("sign-in.title")}</CardTitle>
       </CardHeader>
       <CardContent>
         {formType === "mail" && (
@@ -27,6 +29,7 @@ const SignInPage = () => {
             onSubmit={onSubmit}
             switchForm={() => setFormType("phone")}
             isPending={isPending}
+            t={t}
           />
         )}
         {formType === "phone" && (
@@ -34,6 +37,7 @@ const SignInPage = () => {
             onSubmit={onSubmit}
             switchForm={() => setFormType("mail")}
             isPending={isPending}
+            t={t}
           />
         )}
         <div className='flex justify-center items-center mt-3'>
@@ -44,9 +48,9 @@ const SignInPage = () => {
           </Link>
         </div>
         <div className='mt-4 text-center text-sm'>
-          У вас нет учетной записи?{" "}
-          <Link to={PATHS.SIGNUP} className='underline'>
-            Зарегестрироваться
+          {t("sign-in.dont_have_account")}{" "}
+          <Link to={PATHS.SIGNUP} className='underline' data-testid='sign_in_link_to_sign_up'>
+            {t("sign-in.sign_up")}
           </Link>
         </div>
       </CardContent>

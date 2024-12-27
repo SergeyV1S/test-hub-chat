@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { TFunctionNonStrict } from "i18next";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
@@ -13,9 +14,10 @@ interface MailFormProps {
   onSubmit: (values: z.infer<typeof signInMailSchema>) => Promise<void>;
   switchForm: () => void;
   isPending: boolean;
+  t: TFunctionNonStrict<"translation", undefined>;
 }
 
-export const EmailForm = ({ onSubmit, switchForm, isPending }: MailFormProps) => {
+export const EmailForm = ({ onSubmit, switchForm, isPending, t }: MailFormProps) => {
   const signInMailForm = useForm<z.infer<typeof signInMailSchema>>({
     resolver: zodResolver(signInMailSchema),
     defaultValues: {
@@ -26,17 +28,25 @@ export const EmailForm = ({ onSubmit, switchForm, isPending }: MailFormProps) =>
 
   return (
     <Form {...signInMailForm}>
-      <form onSubmit={signInMailForm.handleSubmit(onSubmit)} className='grid gap-4'>
+      <form
+        onSubmit={signInMailForm.handleSubmit(onSubmit)}
+        className='grid gap-4'
+        data-testid='sign_in_mail_form'
+      >
         <FormField
           control={signInMailForm.control}
           name='mail'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Электронная почта</FormLabel>
+              <FormLabel>{t("general.mail")}</FormLabel>
               <FormControl>
-                <Input placeholder='Введите почту' {...field} />
+                <Input
+                  data-testid='sign_in_mail_input'
+                  placeholder={t("general.mail")}
+                  {...field}
+                />
               </FormControl>
-              <FormMessage />
+              <FormMessage data-testid='sign_in_mail_form_message' />
             </FormItem>
           )}
         />
@@ -45,16 +55,21 @@ export const EmailForm = ({ onSubmit, switchForm, isPending }: MailFormProps) =>
           name='password'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Пароль</FormLabel>
+              <FormLabel>{t("general.password")}</FormLabel>
               <FormControl>
-                <PasswordInput autoComplete='off' placeholder='Введите пароль' {...field} />
+                <PasswordInput
+                  data-testid='sign_in_password_input'
+                  autoComplete='off'
+                  placeholder={t("general.password")}
+                  {...field}
+                />
               </FormControl>
-              <FormMessage />
+              <FormMessage data-testid='sign_in_password_form_message' />
             </FormItem>
           )}
         />
         <Button onClick={switchForm} size='sm' variant='link' type='button'>
-          Войти по номеру телефона
+          {t("sign-in.sign_in_with_phone")}
         </Button>
         <Button
           disabled={
@@ -62,10 +77,11 @@ export const EmailForm = ({ onSubmit, switchForm, isPending }: MailFormProps) =>
             !signInMailForm.formState.dirtyFields.mail ||
             isPending
           }
+          data-testid='sign_in_submit_form_button'
           type='submit'
           className='w-full'
         >
-          Войти
+          {t("sign-in.title")}
         </Button>
       </form>
     </Form>

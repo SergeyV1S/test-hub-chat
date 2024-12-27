@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom";
 import type { z } from "zod";
 
 import { AUTH_KEY, PATHS } from "@shared/constants";
+import { formatePhone } from "@shared/lib/formatePhone";
 import { toast } from "@shared/lib/hooks/use-toast";
 
 import { usePostRegisterMutation } from "../api/usePostCreateUser";
-import { formatePhone } from "../lib/formatePhone";
 import type { signUpSchema } from "../lib/signUpSchema";
 
 export const useSignUp = () => {
