@@ -2,11 +2,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import type { z } from "zod";
 
 import { AUTH_KEY, PATHS } from "@shared/constants";
-import { toast } from "@shared/lib/hooks/use-toast";
+import { toast } from "@shared/hooks";
 
 import { usePostLoginMutation } from "../api/usePostLoginMutation";
-import type { signInMailSchema } from "../lib/signInMailSchema";
-import type { signInPhoneSchema } from "../lib/signInPhoneSchema";
+import type { signInMailSchema, signInPhoneSchema } from "../lib";
 
 export const useSignIn = () => {
   const navigate = useNavigate();

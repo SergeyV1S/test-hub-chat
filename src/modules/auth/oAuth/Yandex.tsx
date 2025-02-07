@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { Spinner } from "@shared/ui/spinner";
+import { Spinner } from "@shared/ui";
 
 import { postoAuth } from "./api/postoAuth";
 import { EoAuth } from "./types";

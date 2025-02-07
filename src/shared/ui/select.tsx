@@ -1,7 +1,7 @@
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 
-import { cn } from "@shared/lib/utils";
+import { cn } from "@shared/lib";
 
 const Select = SelectPrimitive.Root;
 
@@ -15,7 +15,7 @@ const SelectTrigger = ({
   withoutChevron = false,
   ref,
   ...props
-}: TComponentPropsWithRef<typeof SelectPrimitive.Trigger> & { withoutChevron?: boolean }) => (
+}: TPropsWithRef<typeof SelectPrimitive.Trigger> & { withoutChevron?: boolean }) => (
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
@@ -38,7 +38,7 @@ const SelectScrollUpButton = ({
   className,
   ref,
   ...props
-}: TComponentPropsWithRef<typeof SelectPrimitive.ScrollUpButton>) => (
+}: TPropsWithRef<typeof SelectPrimitive.ScrollUpButton>) => (
   <SelectPrimitive.ScrollUpButton
     ref={ref}
     className={cn("flex cursor-default items-center justify-center py-1", className)}
@@ -53,7 +53,7 @@ const SelectScrollDownButton = ({
   className,
   ref,
   ...props
-}: TComponentPropsWithRef<typeof SelectPrimitive.ScrollDownButton>) => (
+}: TPropsWithRef<typeof SelectPrimitive.ScrollDownButton>) => (
   <SelectPrimitive.ScrollDownButton
     ref={ref}
     className={cn("flex cursor-default items-center justify-center py-1", className)}
@@ -71,7 +71,7 @@ const SelectContent = ({
   ref,
   position = "popper",
   ...props
-}: TComponentPropsWithRef<typeof SelectPrimitive.Content>) => (
+}: TPropsWithRef<typeof SelectPrimitive.Content>) => (
   <SelectPrimitive.Portal>
     <SelectPrimitive.Content
       ref={ref}
@@ -101,11 +101,7 @@ const SelectContent = ({
 
 SelectContent.displayName = SelectPrimitive.Content.displayName;
 
-const SelectLabel = ({
-  className,
-  ref,
-  ...props
-}: TComponentPropsWithRef<typeof SelectPrimitive.Label>) => (
+const SelectLabel = ({ className, ref, ...props }: TPropsWithRef<typeof SelectPrimitive.Label>) => (
   <SelectPrimitive.Label
     ref={ref}
     className={cn("px-2 py-1.5 text-sm font-semibold", className)}
@@ -119,7 +115,7 @@ const SelectItem = ({
   children,
   ref,
   ...props
-}: TComponentPropsWithRef<typeof SelectPrimitive.Item>) => (
+}: TPropsWithRef<typeof SelectPrimitive.Item>) => (
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
@@ -142,7 +138,7 @@ const SelectSeparator = ({
   className,
   ref,
   ...props
-}: TComponentPropsWithRef<typeof SelectPrimitive.Separator>) => (
+}: TPropsWithRef<typeof SelectPrimitive.Separator>) => (
   <SelectPrimitive.Separator
     ref={ref}
     className={cn("-mx-1 my-1 h-px bg-muted", className)}

@@ -1,27 +1,22 @@
-import { useTranslation } from "react-i18next";
 import { PatternFormat } from "react-number-format";
 import { Link } from "react-router-dom";
 
 import { PATHS } from "@shared/constants";
-import { Button } from "@shared/ui/button";
+import { Button, Input, PasswordInput } from "@shared/ui";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@shared/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shared/ui/form";
-import { Input } from "@shared/ui/input";
-import { PasswordInput } from "@shared/ui/password-input";
 
-import { useSignUp } from "./model/useSignUp";
-import { useSignUpForm } from "./model/useSignUpForm";
+import { useSignUp, useSignUpForm } from "./model";
 
 const SignUpPage = () => {
   const { onSubmit, registerMutation } = useSignUp();
   const { isDisabled, signUpForm } = useSignUpForm();
-  const { t } = useTranslation();
 
   return (
     <Card className='m-auto w-full max-w-fit'>
       <CardHeader>
-        <CardTitle className='text-xl'>{t("sign-up.title")}</CardTitle>
-        <CardDescription>{t("sign-up.description")}</CardDescription>
+        <CardTitle className='text-xl'>Регистрация</CardTitle>
+        <CardDescription>Введите свои данные для создания учетной записи</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...signUpForm}>
@@ -32,13 +27,9 @@ const SignUpPage = () => {
                 name='firstName'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t("general.name")}*</FormLabel>
+                    <FormLabel>Имя*</FormLabel>
                     <FormControl>
-                      <Input
-                        data-testid='sign_up_first_name_input'
-                        placeholder={t("general.name")}
-                        {...field}
-                      />
+                      <Input data-testid='sign_up_first_name_input' placeholder='Имя' {...field} />
                     </FormControl>
                     <FormMessage data-testid='sign_up_first_name_form_message' />
                   </FormItem>
@@ -49,11 +40,11 @@ const SignUpPage = () => {
                 name='secondName'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t("general.second_name")}*</FormLabel>
+                    <FormLabel>Фамилия*</FormLabel>
                     <FormControl>
                       <Input
                         data-testid='sign_up_second_name_input'
-                        placeholder={t("general.second_name")}
+                        placeholder='Фамилия'
                         {...field}
                       />
                     </FormControl>
@@ -67,11 +58,11 @@ const SignUpPage = () => {
               name='phone'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t("general.phone")}*</FormLabel>
+                  <FormLabel>Номер телефона*</FormLabel>
                   <FormControl>
                     <Input
                       type='text'
-                      placeholder={t("general.phone")}
+                      placeholder='Номер телефона'
                       format='+7 (###) ### ## ##'
                       data-testid='sign_up_phone_input'
                       mask='_'
@@ -88,11 +79,11 @@ const SignUpPage = () => {
               name='mail'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t("general.mail")}*</FormLabel>
+                  <FormLabel>Электронная почта*</FormLabel>
                   <FormControl>
                     <Input
                       data-testid='sign_up_mail_input'
-                      placeholder={t("general.mail")}
+                      placeholder='Электронная почта'
                       {...field}
                     />
                   </FormControl>
@@ -105,12 +96,12 @@ const SignUpPage = () => {
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t("general.password")}*</FormLabel>
+                  <FormLabel>Пароль*</FormLabel>
                   <FormControl>
                     <PasswordInput
                       autoComplete='off'
                       data-testid='sign_up_password_input'
-                      placeholder={t("general.password")}
+                      placeholder='Пароль'
                       {...field}
                     />
                   </FormControl>
@@ -124,15 +115,15 @@ const SignUpPage = () => {
               className='w-full'
               data-testid='sign_up_sign_in_button'
             >
-              {t("sign-up.create_account")}
+              Зарегистрироваться
             </Button>
           </form>
         </Form>
 
         <p className='mt-4 text-center text-sm'>
-          {t("sign-up.already_have_account")}{" "}
+          Уже есть учетная запись?{" "}
           <Link to={PATHS.SIGNIN} className='underline'>
-            {t("sign-up.sign_in")}
+            Войти
           </Link>
         </p>
       </CardContent>
