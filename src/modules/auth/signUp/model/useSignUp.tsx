@@ -6,7 +6,7 @@ import { toast } from "@shared/hooks";
 import { formatePhone } from "@shared/lib";
 
 import { usePostRegisterMutation } from "../api/usePostCreateUser";
-import type { signUpSchema } from "../lib/signUpSchema";
+import type { signUpSchema } from "../lib";
 
 export const useSignUp = () => {
   const navigate = useNavigate();

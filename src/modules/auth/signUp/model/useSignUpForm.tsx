@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
-import { signUpSchema } from "../lib/signUpSchema";
+import { signUpSchema } from "../lib";
 
 export const useSignUpForm = () => {
   const signUpForm = useForm<z.infer<typeof signUpSchema>>({

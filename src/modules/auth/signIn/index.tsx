@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@shared/ui/card";
 
 import { EmailForm } from "./_components/EmailForm";
 import { PhoneForm } from "./_components/PhoneForm";
-import { useSignIn } from "./model/useSignIn";
+import { useSignIn } from "./model";
 
 const SignInPage = () => {
   const [formType, setFormType] = useState("mail");

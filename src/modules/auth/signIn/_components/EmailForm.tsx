@@ -2,12 +2,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
-import { Button } from "@shared/ui/button";
+import { Button, Input, PasswordInput } from "@shared/ui";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shared/ui/form";
-import { Input } from "@shared/ui/input";
-import { PasswordInput } from "@shared/ui/password-input";
 
-import { signInMailSchema } from "../lib/signInMailSchema";
+import { signInMailSchema } from "../lib";
 
 interface IMailFormProps {
   onSubmit: (values: z.infer<typeof signInMailSchema>) => Promise<void>;

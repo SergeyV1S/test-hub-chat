@@ -2,14 +2,11 @@ import { PatternFormat } from "react-number-format";
 import { Link } from "react-router-dom";
 
 import { PATHS } from "@shared/constants";
-import { Button } from "@shared/ui/button";
+import { Button, Input, PasswordInput } from "@shared/ui";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@shared/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shared/ui/form";
-import { Input } from "@shared/ui/input";
-import { PasswordInput } from "@shared/ui/password-input";
 
-import { useSignUp } from "./model/useSignUp";
-import { useSignUpForm } from "./model/useSignUpForm";
+import { useSignUp, useSignUpForm } from "./model";
 
 const SignUpPage = () => {
   const { onSubmit, registerMutation } = useSignUp();
