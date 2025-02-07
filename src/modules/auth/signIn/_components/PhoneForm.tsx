@@ -1,5 +1,4 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { TFunctionNonStrict } from "i18next";
 import { useForm } from "react-hook-form";
 import { PatternFormat } from "react-number-format";
 import type { z } from "zod";
@@ -11,14 +10,13 @@ import { PasswordInput } from "@shared/ui/password-input";
 
 import { signInPhoneSchema } from "../lib/signInPhoneSchema";
 
-interface PhoneFormProps {
+interface IPhoneFormProps {
   onSubmit: (values: z.infer<typeof signInPhoneSchema>) => Promise<void>;
   switchForm: () => void;
   isPending: boolean;
-  t: TFunctionNonStrict<"translation", undefined>;
 }
 
-export const PhoneForm = ({ onSubmit, switchForm, isPending, t }: PhoneFormProps) => {
+export const PhoneForm = ({ onSubmit, switchForm, isPending }: IPhoneFormProps) => {
   const signInPhoneForm = useForm<z.infer<typeof signInPhoneSchema>>({
     resolver: zodResolver(signInPhoneSchema),
     defaultValues: {
@@ -39,12 +37,12 @@ export const PhoneForm = ({ onSubmit, switchForm, isPending, t }: PhoneFormProps
           name='phone'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t("general.phone")}</FormLabel>
+              <FormLabel>Номер телефона</FormLabel>
               <FormControl>
                 <Input
                   data-testid='sign_in_phone_input'
                   type='text'
-                  placeholder={t("general.phone")}
+                  placeholder='Номер телефона'
                   format='+7 (###) ### ## ##'
                   mask='_'
                   component={PatternFormat}
@@ -60,12 +58,12 @@ export const PhoneForm = ({ onSubmit, switchForm, isPending, t }: PhoneFormProps
           name='password'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t("general.password")}</FormLabel>
+              <FormLabel>Пароль</FormLabel>
               <FormControl>
                 <PasswordInput
                   data-testid='sign_in_password_input'
                   autoComplete='off'
-                  placeholder={t("general.password")}
+                  placeholder='Пароль'
                   {...field}
                 />
               </FormControl>
@@ -74,7 +72,7 @@ export const PhoneForm = ({ onSubmit, switchForm, isPending, t }: PhoneFormProps
           )}
         />
         <Button onClick={switchForm} size='sm' variant='link' type='button'>
-          {t("sign-in.sign_in_with_email")}
+          Войти по электронной почте
         </Button>
         <Button
           disabled={
@@ -86,7 +84,7 @@ export const PhoneForm = ({ onSubmit, switchForm, isPending, t }: PhoneFormProps
           type='submit'
           className='w-full'
         >
-          {t("sign-in.title")}
+          Войти
         </Button>
       </form>
     </Form>
