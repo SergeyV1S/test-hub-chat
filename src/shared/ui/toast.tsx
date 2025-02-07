@@ -10,7 +10,7 @@ const ToastViewport = ({
   className,
   ref,
   ...props
-}: TComponentPropsWithRef<typeof ToastPrimitives.Viewport>) => (
+}: TPropsWithRef<typeof ToastPrimitives.Viewport>) => (
   <ToastPrimitives.Viewport
     ref={ref}
     className={cn(
@@ -43,7 +43,7 @@ const Toast = ({
   ref,
   variant,
   ...props
-}: TComponentPropsWithRef<typeof ToastPrimitives.Root> & VariantProps<typeof toastVariants>) => (
+}: TPropsWithRef<typeof ToastPrimitives.Root> & VariantProps<typeof toastVariants>) => (
   <ToastPrimitives.Root
     ref={ref}
     className={cn(toastVariants({ variant }), className)}
@@ -56,7 +56,7 @@ const ToastAction = ({
   className,
   ref,
   ...props
-}: TComponentPropsWithRef<typeof ToastPrimitives.Action>) => (
+}: TPropsWithRef<typeof ToastPrimitives.Action>) => (
   <ToastPrimitives.Action
     ref={ref}
     className={cn(
@@ -68,11 +68,7 @@ const ToastAction = ({
 );
 ToastAction.displayName = ToastPrimitives.Action.displayName;
 
-const ToastClose = ({
-  className,
-  ref,
-  ...props
-}: TComponentPropsWithRef<typeof ToastPrimitives.Close>) => (
+const ToastClose = ({ className, ref, ...props }: TPropsWithRef<typeof ToastPrimitives.Close>) => (
   <ToastPrimitives.Close
     ref={ref}
     className={cn(
@@ -87,11 +83,7 @@ const ToastClose = ({
 );
 ToastClose.displayName = ToastPrimitives.Close.displayName;
 
-const ToastTitle = ({
-  className,
-  ref,
-  ...props
-}: TComponentPropsWithRef<typeof ToastPrimitives.Title>) => (
+const ToastTitle = ({ className, ref, ...props }: TPropsWithRef<typeof ToastPrimitives.Title>) => (
   <ToastPrimitives.Title
     ref={ref}
     className={cn("text-sm font-semibold [&+div]:text-xs", className)}
@@ -104,7 +96,7 @@ const ToastDescription = ({
   className,
   ref,
   ...props
-}: TComponentPropsWithRef<typeof ToastPrimitives.Description>) => (
+}: TPropsWithRef<typeof ToastPrimitives.Description>) => (
   <ToastPrimitives.Description
     ref={ref}
     className={cn("text-sm opacity-90", className)}

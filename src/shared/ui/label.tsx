@@ -11,7 +11,7 @@ const Label = ({
   className,
   ref,
   ...props
-}: TComponentPropsWithRef<typeof LabelPrimitive.Root> & VariantProps<typeof labelVariants>) => (
+}: TPropsWithRef<typeof LabelPrimitive.Root> & VariantProps<typeof labelVariants>) => (
   <LabelPrimitive.Root ref={ref} className={cn(labelVariants(), className)} {...props} />
 );
 Label.displayName = LabelPrimitive.Root.displayName;

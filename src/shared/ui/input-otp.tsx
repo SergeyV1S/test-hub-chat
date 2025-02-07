@@ -9,7 +9,7 @@ const InputOTP = ({
   containerClassName,
   ref,
   ...props
-}: TComponentPropsWithRef<typeof OTPInput>) => (
+}: TPropsWithRef<typeof OTPInput>) => (
   <OTPInput
     ref={ref}
     containerClassName={cn(
@@ -22,7 +22,7 @@ const InputOTP = ({
 );
 InputOTP.displayName = "InputOTP";
 
-const InputOTPGroup = ({ className, ref, ...props }: THTMLElementPropsWithRef<HTMLDivElement>) => (
+const InputOTPGroup = ({ className, ref, ...props }: TPropsWithRef<HTMLDivElement>) => (
   <div ref={ref} className={cn("flex items-center", className)} {...props} />
 );
 InputOTPGroup.displayName = "InputOTPGroup";
@@ -32,7 +32,7 @@ const InputOTPSlot = ({
   ref,
   className,
   ...props
-}: THTMLElementPropsWithRef<HTMLDivElement> & { index: number }) => {
+}: TPropsWithRef<HTMLDivElement> & { index: number }) => {
   const inputOTPContext = React.useContext(OTPInputContext);
   const { char, hasFakeCaret, isActive } = inputOTPContext.slots[index];
 
@@ -57,7 +57,7 @@ const InputOTPSlot = ({
 };
 InputOTPSlot.displayName = "InputOTPSlot";
 
-const InputOTPSeparator = ({ ref, ...props }: THTMLElementPropsWithRef<HTMLDivElement>) => (
+const InputOTPSeparator = ({ ref, ...props }: TPropsWithRef<HTMLDivElement>) => (
   <div ref={ref} role='separator' {...props}>
     <DashIcon />
   </div>

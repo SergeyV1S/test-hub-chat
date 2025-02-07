@@ -58,7 +58,7 @@ interface FormItemContextValue {
 
 const FormItemContext = React.createContext<FormItemContextValue>({} as FormItemContextValue);
 
-const FormItem = ({ className, ref, ...props }: THTMLElementPropsWithRef<HTMLDivElement>) => {
+const FormItem = ({ className, ref, ...props }: TPropsWithRef<HTMLDivElement>) => {
   const id = React.useId();
 
   return (
@@ -69,7 +69,7 @@ const FormItem = ({ className, ref, ...props }: THTMLElementPropsWithRef<HTMLDiv
 };
 FormItem.displayName = "FormItem";
 
-const FormLabel = ({ className, ref, ...props }: THTMLElementPropsWithRef<HTMLLabelElement>) => {
+const FormLabel = ({ className, ref, ...props }: TPropsWithRef<HTMLLabelElement>) => {
   const { error, formItemId } = useFormField();
 
   return (
@@ -83,7 +83,7 @@ const FormLabel = ({ className, ref, ...props }: THTMLElementPropsWithRef<HTMLLa
 };
 FormLabel.displayName = "FormLabel";
 
-const FormControl = ({ ref, ...props }: THTMLElementPropsWithRef<HTMLElement>) => {
+const FormControl = ({ ref, ...props }: TPropsWithRef<HTMLElement>) => {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
 
   return (
@@ -98,11 +98,7 @@ const FormControl = ({ ref, ...props }: THTMLElementPropsWithRef<HTMLElement>) =
 };
 FormControl.displayName = "FormControl";
 
-const FormDescription = ({
-  className,
-  ref,
-  ...props
-}: THTMLElementPropsWithRef<HTMLParagraphElement>) => {
+const FormDescription = ({ className, ref, ...props }: TPropsWithRef<HTMLParagraphElement>) => {
   const { formDescriptionId } = useFormField();
 
   return (
@@ -121,7 +117,7 @@ const FormMessage = ({
   children,
   ref,
   ...props
-}: THTMLElementPropsWithRef<HTMLParagraphElement>) => {
+}: TPropsWithRef<HTMLParagraphElement>) => {
   const { error, formMessageId } = useFormField();
   const body = error ? String(error?.message) : children;
 

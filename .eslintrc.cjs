@@ -15,6 +15,7 @@ module.exports = {
   plugins: ["react-refresh", "react", "@typescript-eslint"],
   root: true,
   rules: {
+    "@typescript-eslint/consistent-type-imports": "off",
     "react/prop-types": "off",
     "@typescript-eslint/no-unused-expressions": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
@@ -29,12 +30,6 @@ module.exports = {
     "@typescript-eslint/no-empty-function": "error",
     "arrow-body-style": ["error", "as-needed"],
     "react/self-closing-comp": ["error", { component: true, html: true }],
-    "@typescript-eslint/consistent-type-imports": [
-      "error",
-      {
-        prefer: "type-imports"
-      }
-    ],
     "no-restricted-imports": [
       "warn",
       {

@@ -5,7 +5,7 @@ import { cn } from "@shared/lib";
 export type InputProps<Component extends React.ElementType = "input"> = {
   component?: Component;
   className?: string;
-} & TComponentPropsWithRef<Component>;
+} & TPropsWithRef<Component>;
 
 const InputBase = ({ className, ref, component: Component = "input", ...props }: InputProps) => (
   <Component
