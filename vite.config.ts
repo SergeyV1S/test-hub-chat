@@ -18,5 +18,5 @@ export default defineConfig({
   define: {
     "process.env": process.env
   },
-  envPrefix: ["VITE_", "BASE_", "YANDEX_"]
+  envPrefix: ["VITE_", "BASE_"]
 });

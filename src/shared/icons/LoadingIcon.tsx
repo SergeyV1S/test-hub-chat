@@ -1,12 +1,10 @@
-import { cn } from "@shared/lib";
-
 export const LoadingIcon = (props: React.ComponentProps<"svg"> & { size?: number }) => (
   <svg
     aria-hidden='true'
     role='status'
     width={props.size || 60}
     height={props.size || 60}
-    className={cn("inline me-3 text-gray-200 animate-spin dark:text-gray-600", props.className)}
+    className={"inline me-3 text-gray-200 animate-spin dark:text-gray-600 " + props.className}
     viewBox='0 0 100 101'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
