@@ -1,3 +1,4 @@
+import { pendingHandler, rejectedHandler } from "@/shared/store";
 import type { IChat, IModel } from "@/shared/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
@@ -24,10 +25,7 @@ export const chatSlice = createSlice({
   extraReducers: (builder) => {
     builder
       // Получить список чатов
-      .addCase(getChatsActionCreator.pending, (state) => {
-        state.isLoading = true;
-        state.error = undefined;
-      })
+      .addCase(getChatsActionCreator.pending, pendingHandler)
       .addCase(
         getChatsActionCreator.fulfilled,
         (state, action: PayloadAction<IBaseResponse<IChat[]>>) => {
@@ -35,62 +33,35 @@ export const chatSlice = createSlice({
           state.isLoading = false;
         }
       )
-      .addCase(getChatsActionCreator.rejected, (state, action) => {
-        state.error = action.error?.message;
-        state.isLoading = false;
-      })
+      .addCase(getChatsActionCreator.rejected, rejectedHandler)
       // Создать чат
-      .addCase(postCreateChatActionCreator.pending, (state) => {
-        state.isLoading = true;
-        state.error = undefined;
-      })
+      .addCase(postCreateChatActionCreator.pending, pendingHandler)
       .addCase(postCreateChatActionCreator.fulfilled, (state, action: PayloadAction<IChat>) => {
         state.chatList = [action.payload, ...state.chatList];
         state.isLoading = false;
       })
-      .addCase(postCreateChatActionCreator.rejected, (state, action) => {
-        state.error = action.error?.message;
-        state.isLoading = false;
-      })
+      .addCase(postCreateChatActionCreator.rejected, rejectedHandler)
       // Удалить чат
-      .addCase(deletChatActionCreator.pending, (state) => {
-        state.isLoading = true;
-        state.error = undefined;
-      })
+      .addCase(deletChatActionCreator.pending, pendingHandler)
       .addCase(deletChatActionCreator.fulfilled, (state, action: PayloadAction<IChat>) => {
         state.chatList = state.chatList.filter((chat) => chat.id === action.payload.id);
         state.isLoading = false;
       })
-      .addCase(deletChatActionCreator.rejected, (state, action) => {
-        state.error = action.error?.message;
-        state.isLoading = false;
-      })
+      .addCase(deletChatActionCreator.rejected, rejectedHandler)
       // Получить AI модели
-      .addCase(getModelListActionCreator.pending, (state) => {
-        state.isLoading = true;
-        state.error = undefined;
-      })
+      .addCase(getModelListActionCreator.pending, pendingHandler)
       .addCase(getModelListActionCreator.fulfilled, (state, action: PayloadAction<IModel[]>) => {
         state.modelList = action.payload;
         state.isLoading = false;
       })
-      .addCase(getModelListActionCreator.rejected, (state, action) => {
-        state.error = action.error?.message;
-        state.isLoading = false;
-      })
+      .addCase(getModelListActionCreator.rejected, rejectedHandler)
       // Выбрать другую модель
-      .addCase(patchUpdateModelActionCreator.pending, (state) => {
-        state.isLoading = true;
-        state.error = undefined;
-      })
+      .addCase(patchUpdateModelActionCreator.pending, pendingHandler)
       .addCase(patchUpdateModelActionCreator.fulfilled, (state, action: PayloadAction<IChat>) => {
         state.currentChat = action.payload;
         state.isLoading = false;
       })
-      .addCase(patchUpdateModelActionCreator.rejected, (state, action) => {
-        state.error = action.error?.message;
-        state.isLoading = false;
-      });
+      .addCase(patchUpdateModelActionCreator.rejected, rejectedHandler);
   },
   selectors: {
     getChatState: (state) => state

@@ -1,3 +1,4 @@
+import { pendingHandler, rejectedHandler } from "@/shared/store";
 import type { IChatMessage, IMessage } from "@/shared/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
@@ -21,10 +22,7 @@ export const messageSlice = createSlice({
   extraReducers: (builder) => {
     builder
       // Получить сообщения чата
-      .addCase(getChatMessageListActionCreator.pending, (state) => {
-        state.isLoading = true;
-        state.error = undefined;
-      })
+      .addCase(getChatMessageListActionCreator.pending, pendingHandler)
       .addCase(
         getChatMessageListActionCreator.fulfilled,
         (state, action: PayloadAction<IBaseResponse<IChatMessage[]>>) => {
@@ -32,23 +30,14 @@ export const messageSlice = createSlice({
           state.isLoading = false;
         }
       )
-      .addCase(getChatMessageListActionCreator.rejected, (state, action) => {
-        state.error = action.error?.message;
-        state.isLoading = false;
-      })
+      .addCase(getChatMessageListActionCreator.rejected, rejectedHandler)
       // Отправить сообщение
-      .addCase(postSendMessageActionCreator.pending, (state) => {
-        state.isLoading = true;
-        state.error = undefined;
-      })
+      .addCase(postSendMessageActionCreator.pending, pendingHandler)
       .addCase(postSendMessageActionCreator.fulfilled, (state, action: PayloadAction<IMessage>) => {
         state.chatMessages = [...state.chatMessages, action.payload];
         state.isLoading = false;
       })
-      .addCase(postSendMessageActionCreator.rejected, (state, action) => {
-        state.error = action.error?.message;
-        state.isLoading = false;
-      });
+      .addCase(postSendMessageActionCreator.rejected, rejectedHandler);
   },
   selectors: {
     getChatState: (state) => state
