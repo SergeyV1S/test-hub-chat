@@ -1,10 +1,12 @@
-import { pendingHandler, rejectedHandler } from "@/shared/store";
-import type { IChatMessage, IMessage } from "@/shared/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
 
+import type { IChatMessage, IMessage } from "@/shared/types";
+
 import { getChatMessageListActionCreator, postSendMessageActionCreator } from "./actions";
 import type { IMessageState } from "./types";
+
+const { pendingHandler, rejectedHandler } = await import("@/shared/store");
 
 export const initialState: IMessageState = {
   isLoading: false,

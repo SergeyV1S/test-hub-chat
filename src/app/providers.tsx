@@ -1,6 +1,8 @@
-import { store } from "@/shared/store";
-import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
+
+import { Provider } from "react-redux";
+
+import { store } from "@/shared/store";
 
 import { routes } from "./router";
 

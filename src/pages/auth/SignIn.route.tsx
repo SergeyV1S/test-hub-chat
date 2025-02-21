@@ -1,7 +1,8 @@
-import { PATHS } from "@/shared/constants";
-import { Spinner } from "@/shared/ui";
 import { Suspense, lazy } from "react";
 import type { RouteObject } from "react-router-dom";
+
+import { PATHS } from "@/shared/constants";
+import { Spinner } from "@/shared/ui";
 
 const SignInScreen = lazy(() => import("./SignIn"));
 

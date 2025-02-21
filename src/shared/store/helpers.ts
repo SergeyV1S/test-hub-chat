@@ -1,9 +1,7 @@
-import { IChatState } from "@/entity/chat";
-import { IMessageState } from "@/entity/message";
 import type { PayloadAction, SerializedError } from "@reduxjs/toolkit";
 
 export const rejectedHandler = (
-  state: IChatState | IMessageState,
+  state: { error?: string; isLoading: boolean },
   action: PayloadAction<
     unknown,
     string,
@@ -28,7 +26,7 @@ export const rejectedHandler = (
   state.isLoading = false;
 };
 
-export const pendingHandler = (state: IChatState | IMessageState) => {
+export const pendingHandler = (state: { error?: string; isLoading: boolean }) => {
   state.isLoading = true;
   state.error = undefined;
 };
