@@ -1,6 +1,5 @@
+import { AUTH_KEY, PATHS } from "@/shared/constants";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-
-import { AUTH_KEY, PATHS } from "@shared/constants";
 
 export const PrivateRoute = () => {
   const location = useLocation();
