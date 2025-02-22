@@ -21,6 +21,9 @@
       "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 3 --fix"
     ]
   },
+  "resolutions": {
+    "styled-components": "^6"
+  },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@reduxjs/toolkit": "^2.5.1",
@@ -31,6 +34,7 @@
     "react-hook-form": "^7.54.1",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.0.2",
+    "styled-components": "^6.1.15",
     "zod": "^3.24.1"
   },
   "devDependencies": {

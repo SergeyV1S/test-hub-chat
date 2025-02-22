@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
 
+import { pendingHandler, rejectedHandler } from "@/shared/store";
 import type { IChat, IModel } from "@/shared/types";
 
 import {
@@ -11,8 +12,6 @@ import {
   postCreateChatActionCreator
 } from "./actions";
 import type { IChatState } from "./types";
-
-const { pendingHandler, rejectedHandler } = await import("@/shared/store");
 
 export const initialState: IChatState = {
   isLoading: false,

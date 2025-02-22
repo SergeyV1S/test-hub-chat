@@ -1,0 +1,14 @@
+:root {
+  /* background */
+  --main-bg-color: #0e0c15;
+  --bg-card-color: #222b44;
+  --secondary-bg-color: #121825;
+  --message-bg-color: #4785ff80;
+
+  /* button */
+  --main-color: #1c64f2;
+  --descructive-color: #fe4242;
+
+  /* other */
+  --hover-color: #222b44;
+}

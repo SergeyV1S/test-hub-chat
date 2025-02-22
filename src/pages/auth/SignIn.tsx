@@ -1,3 +1,3 @@
-const SignIn = () => <div className=''>Вход</div>;
+const SignIn = () => <div>Вход</div>;
 
 export default SignIn;
