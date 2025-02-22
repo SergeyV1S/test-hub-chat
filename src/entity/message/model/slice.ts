@@ -9,6 +9,7 @@ import type { IMessageState } from "./types";
 
 export const initialState: IMessageState = {
   isLoading: false,
+  isLoadingSend: false,
   chatMessages: []
 };
 
@@ -27,18 +28,23 @@ export const messageSlice = createSlice({
       .addCase(
         getChatMessageListActionCreator.fulfilled,
         (state, action: PayloadAction<IBaseResponse<IChatMessage[]>>) => {
-          state.chatMessages = action.payload.data;
+          state.chatMessages = action.payload.data.reverse();
           state.isLoading = false;
         }
       )
       .addCase(getChatMessageListActionCreator.rejected, rejectedHandler)
       // Отправить сообщение
-      .addCase(postSendMessageActionCreator.pending, pendingHandler)
+      .addCase(postSendMessageActionCreator.pending, (state) => {
+        state.isLoadingSend = true;
+      })
       .addCase(postSendMessageActionCreator.fulfilled, (state, action: PayloadAction<IMessage>) => {
         state.chatMessages = [...state.chatMessages, action.payload];
-        state.isLoading = false;
+        state.isLoadingSend = false;
       })
-      .addCase(postSendMessageActionCreator.rejected, rejectedHandler);
+      .addCase(postSendMessageActionCreator.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.isLoadingSend = false;
+      });
   },
   selectors: {
     getChatState: (state) => state

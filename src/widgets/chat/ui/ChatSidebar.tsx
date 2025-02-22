@@ -56,15 +56,15 @@ export const ChatSidebar = () => {
         {isLoading && <Spinner size={40} />}
         {!isLoading && chatList.length !== 0 ? (
           chatList.map((chat) => (
-            <NavLink key={chat.id} to={chat.id}>
-              <Grid $columns='20px 1fr 20px'>
-                <img style={{ width: 20 }} src='/chat.svg' alt='chat_icon' />
+            <Grid key={chat.id} $columns='20px 1fr 20px'>
+              <img style={{ width: 20 }} src='/chat.svg' alt='chat_icon' />
+              <NavLink to={chat.id}>
                 <Typography kind='body-m-medium' as='p'>
                   {chat.name}
                 </Typography>
-                <img style={{ width: 13 }} src='/trash.svg' alt='trash_icon' />
-              </Grid>
-            </NavLink>
+              </NavLink>
+              <img style={{ width: 13 }} src='/trash.svg' alt='trash_icon' />
+            </Grid>
           ))
         ) : (
           <Typography kind='body-m-medium'>Нет чатов</Typography>

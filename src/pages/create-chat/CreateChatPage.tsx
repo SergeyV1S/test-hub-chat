@@ -1,5 +1,5 @@
-import { Chat } from "@/widgets/chat";
+import { CreateChat } from "@/widgets/create-chat";
 
-const CreateChatPage = () => <Chat key='create-chat' />;
+const CreateChatPage = () => <CreateChat />;
 
 export default CreateChatPage;

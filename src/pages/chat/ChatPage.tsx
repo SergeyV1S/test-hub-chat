@@ -11,7 +11,7 @@ const ChatPage = () => {
 
   useEffect(() => {
     dispatch(getChatMessageListActionCreator(chatUid));
-  }, [chatUid]);
+  }, [chatUid, dispatch]);
 
   return <Chat key={chatUid} />;
 };

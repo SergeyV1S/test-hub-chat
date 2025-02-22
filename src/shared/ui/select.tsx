@@ -24,9 +24,9 @@ const SelectedOption = styled.div`
   padding: 10px;
 `;
 
-const DropdownList = styled.div<{ dropUp: boolean }>`
+const DropdownList = styled.div<{ $dropUp: boolean }>`
   position: absolute;
-  ${({ dropUp }) => (dropUp ? "bottom: 100%;" : "top: 100%;")}
+  ${({ $dropUp }) => ($dropUp ? "bottom: 100%;" : "top: 100%;")}
   left: 0;
   width: 100%;
   padding: 5px;
@@ -37,8 +37,8 @@ const DropdownList = styled.div<{ dropUp: boolean }>`
   max-height: ${MAX_DROPDOWN_HEIGHT}px;
   overflow-y: auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: ${({ dropUp }) => (dropUp ? "0" : "4px")};
-  margin-bottom: ${({ dropUp }) => (dropUp ? "4px" : "0")};
+  margin-top: ${({ $dropUp }) => ($dropUp ? "0" : "4px")};
+  margin-bottom: ${({ $dropUp }) => ($dropUp ? "4px" : "0")};
 `;
 
 const DropdownItem = styled.div`
@@ -92,7 +92,7 @@ export const Select: React.FC<ISelectProps> = ({ options, value, width, children
       </SelectedOption>
 
       {isOpen && (
-        <DropdownList dropUp={dropUp}>
+        <DropdownList $dropUp={dropUp}>
           {options.map((option, index) => (
             <DropdownItem key={index} onClick={() => handleOptionClick(option)}>
               <Typography kind='body-s-medium'>{option}</Typography>

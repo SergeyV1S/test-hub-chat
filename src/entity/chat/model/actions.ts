@@ -1,5 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+import { postSendMessageActionCreator } from "@/entity/message";
+
 import { deleteChat, getChatList, getModelList, patchUpdateModel, postCreateChat } from "../api";
 import type { IPatchUpdateModelParams, IPostCreateChatParams } from "../api";
 
@@ -10,7 +12,11 @@ export const getChatsActionCreator = createAsyncThunk(
 
 export const postCreateChatActionCreator = createAsyncThunk(
   "chatSlice/postCreateChatActionCreator",
-  async (data: IPostCreateChatParams) => (await postCreateChat({ data })).data
+  async (data: IPostCreateChatParams, { dispatch }) =>
+    postCreateChat({ data }).then((res) => {
+      dispatch(postSendMessageActionCreator({ chatId: res.data.id, message: data.name }));
+      return res.data;
+    })
 );
 
 export const deletChatActionCreator = createAsyncThunk(
