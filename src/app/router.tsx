@@ -1,6 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { createChatScreenRoute, createSignInScreenRoute } from "@/pages";
+import {
+  createChatScreenRoute,
+  createCreateChatScreenRoute,
+  createSignInScreenRoute
+} from "@/pages";
 import { ChatLayout } from "@/shared/layouts";
 
 import { PrivateRoute } from "./PrivateRoute";
@@ -11,7 +15,7 @@ export const routes = createBrowserRouter([
     children: [
       {
         element: <ChatLayout />,
-        children: [createChatScreenRoute()]
+        children: [createCreateChatScreenRoute(), createChatScreenRoute()]
       },
       createSignInScreenRoute()
     ]

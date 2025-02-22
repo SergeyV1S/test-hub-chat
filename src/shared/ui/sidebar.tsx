@@ -7,10 +7,10 @@ const SidebarContainer = styled.div<{ isOpen: boolean }>`
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   max-width: 325px;
   border-radius: 18px;
   background-color: var(--secondary-bg-color);
-  box-shadow: var(--base-shadow);
   transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(-100%)")};
   transition: transform 0.3s ease;
   z-index: 1000;
@@ -20,11 +20,12 @@ const SidebarContainer = styled.div<{ isOpen: boolean }>`
     transform: translateX(0);
     position: static;
     height: calc(100% - 32px);
-    box-shadow: none;
+    box-shadow: var(--sidebar-shadow);
   }
 `;
 
 export const SidebarContent = styled.div`
+  position: relative;
   padding: 0px 20px 20px 20px;
   display: flex;
   flex-direction: column;

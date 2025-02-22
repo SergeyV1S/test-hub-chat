@@ -15,6 +15,7 @@
 
   /* shadow */
   --base-shadow: 0 0px 10px var(--message-bg-color);
+  --sidebar-shadow: 0 0px 10px var(--bg-card-color);
 
   /* other */
   --hover-color: #222b44;

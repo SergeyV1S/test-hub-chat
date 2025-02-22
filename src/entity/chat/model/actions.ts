@@ -5,7 +5,7 @@ import type { IPatchUpdateModelParams, IPostCreateChatParams } from "../api";
 
 export const getChatsActionCreator = createAsyncThunk(
   "chatSlice/getChatsActionCreator",
-  async () => (await getChatList({ queryParams: { page: 0 } })).data
+  async () => (await getChatList({ queryParams: { page: 1 } })).data
 );
 
 export const postCreateChatActionCreator = createAsyncThunk(

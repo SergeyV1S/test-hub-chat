@@ -7,7 +7,7 @@ export const Input = styled.input`
   border: 1px solid var(--outlined-border-color);
   padding: 16px;
   border-radius: 8px;
-  height: 22px;
+  height: 54px;
   color: var(--text-color);
   transition:
     background 0.3s ease,

@@ -4,13 +4,13 @@ import type { RouteObject } from "react-router-dom";
 import { paths } from "@/shared/constants";
 import { Spinner } from "@/shared/ui";
 
-const ChatScreen = lazy(() => import("./ChatPage"));
+const CreateChatScreen = lazy(() => import("./CreateChatPage"));
 
-export const createChatScreenRoute = (): RouteObject => ({
-  path: `${paths.CHAT}/:chatUid`,
+export const createCreateChatScreenRoute = (): RouteObject => ({
+  path: paths.CHAT,
   element: (
     <Suspense fallback={<Spinner />}>
-      <ChatScreen />
+      <CreateChatScreen />
     </Suspense>
   ),
   errorElement: <div className=''>Error</div>

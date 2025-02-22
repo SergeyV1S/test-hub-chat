@@ -1,15 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import type { TSignInFormSchema } from "@/features/auth";
+import { chatSliceSelectors, getChatsActionCreator } from "@/entity/chat";
+import { LogoutButton } from "@/features/logout";
+import type { TSignInFormSchema } from "@/features/sign-in";
 import { localStorageKeys } from "@/shared/constants";
-import { Button, Flex, Grid, Select, Separator, Typography } from "@/shared/ui";
+import { useAppDispatch, useAppSelector } from "@/shared/store";
+import { Button, Flex, Grid, Select, Separator, Spinner, Typography } from "@/shared/ui";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/shared/ui/sidebar";
 
 export const ChatSidebar = () => {
+  const dispatch = useAppDispatch();
+  const { chatList, isLoading } = useAppSelector(chatSliceSelectors.getChatState);
+
   const [language, setLanguage] = useState("RU");
   const userData = JSON.parse(
-    localStorage.getItem(localStorageKeys.USER_DATA) || ""
+    localStorage.getItem(localStorageKeys.USER_DATA)!
   ) as TSignInFormSchema;
+
+  useEffect(() => {
+    if (chatList.length === 0) {
+      dispatch(getChatsActionCreator());
+    }
+  }, []);
 
   return (
     <Sidebar>
@@ -33,20 +45,20 @@ export const ChatSidebar = () => {
       </SidebarHeader>
       <Separator />
       <SidebarContent>
-        <Grid columns='20px 1fr 20px'>
-          <img style={{ width: 20 }} src='/chat.svg' alt='chat_icon' />
-          <Typography kind='body-m-medium' as='p'>
-            Элемент 1
-          </Typography>
-          <img style={{ width: 13 }} src='/trash.svg' alt='trash_icon' />
-        </Grid>
-        <Grid columns='20px 1fr 20px'>
-          <img style={{ width: 20 }} src='/chat.svg' alt='chat_icon' />
-          <Typography kind='body-m-medium' as='p'>
-            Элемент 1
-          </Typography>
-          <img style={{ width: 13 }} src='/trash.svg' alt='trash_icon' />
-        </Grid>
+        {isLoading && <Spinner size={40} />}
+        {!isLoading && chatList.length !== 0 ? (
+          chatList.map((chat) => (
+            <Grid key={chat.id} columns='20px 1fr 20px'>
+              <img style={{ width: 20 }} src='/chat.svg' alt='chat_icon' />
+              <Typography kind='body-m-medium' as='p'>
+                {chat.name}
+              </Typography>
+              <img style={{ width: 13 }} src='/trash.svg' alt='trash_icon' />
+            </Grid>
+          ))
+        ) : (
+          <Typography kind='body-m-medium'>Нет чатов</Typography>
+        )}
       </SidebarContent>
       <SidebarFooter>
         <Grid
@@ -68,9 +80,7 @@ export const ChatSidebar = () => {
               9 012 TKN
             </Typography>
           </div>
-          <Button kind='outlined' size='icon'>
-            <img style={{ width: 13 }} src='/exit.svg' alt='trash_icon' />
-          </Button>
+          <LogoutButton />
         </Grid>
       </SidebarFooter>
     </Sidebar>
