@@ -16,27 +16,28 @@ export const UnstyledButton = styled.button`
 
 type TButtonSize = (typeof TButtonSizes)[number];
 
-export const ButtonKinds = ["primary", "outlined", "descructive"] as const;
+export const ButtonKinds = ["primary", "outlined", "destructive"] as const;
 
 export type TButtonKind = (typeof ButtonKinds)[number];
 
 interface IButtonContainerProps {
   size: TButtonSize;
-  isDisabled?: boolean;
+  disabled?: boolean;
   isLoading?: boolean;
   kind: TButtonKind;
 }
 
-const ButtonContainer = styled(UnstyledButton)<IButtonContainerProps>`
+const ButtonContainer = styled(UnstyledButton).withConfig({
+  shouldForwardProp: (prop) => !["isLoading"].includes(prop)
+})<IButtonContainerProps>`
   position: relative;
   white-space: nowrap;
   border-radius: 8px;
 
-  cursor: ${({ isDisabled, isLoading }) =>
-    isDisabled ? "initial" : isLoading ? "wait" : "pointer"};
+  cursor: ${({ disabled, isLoading }) => (disabled ? "initial" : isLoading ? "wait" : "pointer")};
 
-  ${({ isDisabled }) =>
-    isDisabled &&
+  ${({ disabled }) =>
+    disabled &&
     css`
       opacity: 0.8;
     `};
@@ -66,13 +67,13 @@ const ButtonContainer = styled(UnstyledButton)<IButtonContainerProps>`
         background: transparent;
         border: 1px solid var(--outlined-border-color);
       `,
-      descructive: () => css`
+      destructive: () => css`
         background: transparent;
       `
     })}
 
-  ${({ isDisabled, isLoading, kind }) =>
-    !isDisabled &&
+  ${({ disabled, isLoading, kind }) =>
+    !disabled &&
     !isLoading &&
     css`
       &:hover {
@@ -83,8 +84,8 @@ const ButtonContainer = styled(UnstyledButton)<IButtonContainerProps>`
           outlined: () => css`
             background: var(--outlined-hover-color);
           `,
-          descructive: () => css`
-            background: var(--descructive-hover-color);
+          destructive: () => css`
+            background: var(--destructive-hover-color);
           `
         })}
       }
@@ -95,7 +96,7 @@ export interface IButtonProps {
   size?: TButtonSize;
   kind?: TButtonKind;
   children: React.ReactNode;
-  isDisabled?: boolean | string;
+  disabled?: boolean | string;
   isLoading?: boolean;
   isRounded?: boolean;
   onClick?: () => void;
@@ -108,7 +109,7 @@ const Hide = styled.div`
 export const Button = ({
   children,
   size = "default",
-  isDisabled = false,
+  disabled = false,
   isLoading = false,
   onClick,
   kind = "primary",
@@ -134,9 +135,9 @@ export const Button = ({
   const containerProps = {
     kind,
     size,
-    isDisabled: !!isDisabled,
+    disabled: !!disabled,
     isLoading,
-    onClick: isDisabled || isLoading ? undefined : onClick,
+    onClick: disabled || isLoading ? undefined : onClick,
     ...rest
   };
 

@@ -2,7 +2,12 @@ import styled, { css } from "styled-components";
 
 import { match } from "../lib";
 
-export const TTypographyKinds = ["input-md", "body-xl-semibold", "button-md"] as const;
+export const TTypographyKinds = [
+  "input-md",
+  "body-xl-semibold",
+  "button-md",
+  "input-validate"
+] as const;
 
 export type TTypographyKind = (typeof TTypographyKinds)[number];
 
@@ -37,6 +42,12 @@ export const Typography = styled.p<ITypographyProps>`
         font-weight: 500;
         font-size: 18px;
         line-height: 24px;
+      `,
+      "input-validate": () => css`
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: var(--destructive-color);
       `
     })}
 `;
