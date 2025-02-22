@@ -5,23 +5,21 @@ export const CardWrapper = styled.div`
   max-width: 460px;
   background-color: var(--bg-card-color);
   border-radius: 8px;
+  border: 1px solid var(--outlined-border-color);
   box-shadow: 0 0px 10px var(--message-bg-color);
 `;
 
 export const CardHeader = styled.div`
-  width: 100%;
   padding: 20px;
   display: flex;
   justify-content: space-between;
 `;
 
 export const CardContent = styled.div`
-  width: 100%;
   padding: 0px 20px 20px 20px;
 `;
 
 export const CardFooter = styled.div`
-  width: 100%;
   padding: 10px 20px;
   border-top: 1px solid #eaeaea;
   text-align: center;

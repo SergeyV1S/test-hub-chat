@@ -1,21 +1,34 @@
-import { Card, CardContent, CardHeader, Container } from "@/shared/ui";
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  Container,
+  Form,
+  Input,
+  Typography
+} from "@/shared/ui";
 
 const SignIn = () => (
   <Container>
     <Card>
-      <CardHeader>Авторизация</CardHeader>
+      <CardHeader>
+        <Typography kind='body-xl-semibold' as='h1'>
+          Авторизация
+        </Typography>
+      </CardHeader>
       <CardContent>
-        <form>
-          <label htmlFor='mail'>
-            E-Mail
-            <input type='text' id='mail' />
-          </label>
-          <label htmlFor='password'>
+        <Form>
+          <Typography kind='input-md' as='label' htmlFor='name'>
+            Имя
+            <Input type='text' placeholder='Ваше имя' id='name' />
+          </Typography>
+          <Typography kind='input-md' as='label' htmlFor='password'>
             Пароль
-            <input type='text' id='password' />
-          </label>
-          <button>Войти</button>
-        </form>
+            <Input type='text' placeholder='Ваш пароль' id='password' />
+          </Typography>
+          <Button>Войти</Button>
+        </Form>
       </CardContent>
     </Card>
   </Container>
