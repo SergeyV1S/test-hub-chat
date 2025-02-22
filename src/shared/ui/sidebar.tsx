@@ -1,8 +1,9 @@
 import { useState } from "react";
-
 import styled from "styled-components";
 
-const SidebarContainer = styled.div<{ isOpen: boolean }>`
+const SidebarContainer = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "isOpen"
+})<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
   left: 0;

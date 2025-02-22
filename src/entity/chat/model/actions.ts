@@ -20,7 +20,7 @@ export const deletChatActionCreator = createAsyncThunk(
 
 export const getModelListActionCreator = createAsyncThunk(
   "modelSlice/getModelListActionCreator",
-  async () => (await getModelList({ queryParams: { page: 0 } })).data
+  async () => (await getModelList({ queryParams: { page: 1 } })).data
 );
 
 export const patchUpdateModelActionCreator = createAsyncThunk(

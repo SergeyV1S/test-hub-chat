@@ -1,11 +1,21 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 import { chatSliceSelectors, getChatsActionCreator } from "@/entity/chat";
 import { LogoutButton } from "@/features/logout";
 import type { TSignInFormSchema } from "@/features/sign-in";
-import { localStorageKeys } from "@/shared/constants";
+import { localStorageKeys, paths } from "@/shared/constants";
 import { useAppDispatch, useAppSelector } from "@/shared/store";
-import { Button, Flex, Grid, Select, Separator, Spinner, Typography } from "@/shared/ui";
+import {
+  Button,
+  Flex,
+  Grid,
+  Select,
+  Separator,
+  Spinner,
+  StyledLinkButton,
+  Typography
+} from "@/shared/ui";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/shared/ui/sidebar";
 
 export const ChatSidebar = () => {
@@ -26,35 +36,35 @@ export const ChatSidebar = () => {
   return (
     <Sidebar>
       <SidebarHeader>
-        <Flex justifyContent='space-between' alignItems='center' width='100%'>
+        <Flex $justifyContent='space-between' $alignItems='center' width='100%'>
           <img src='/bot_hub_logo.png' alt='logo' />
-          <Select
-            options={["RU", "EN"]}
-            value={language}
-            onChange={(value) => setLanguage(value)}
-          />
+          <Select options={["RU", "EN"]} value={language} onChange={(value) => setLanguage(value)}>
+            {<img src='/net.svg' alt='network_icon' />}
+          </Select>
         </Flex>
-        <Flex gap='16px'>
-          <Button size='icon'>
+        <Flex $gap='16px'>
+          <StyledLinkButton size='icon' kind='primary' to={paths.CHAT}>
             <img style={{ width: 20 }} src='/add_chat.svg' alt='add_chat_icon' />
-          </Button>
+          </StyledLinkButton>
           <Button size='icon' kind='outlined'>
             <img style={{ width: 20 }} src='/search.svg' alt='add_chat_icon' />
           </Button>
         </Flex>
       </SidebarHeader>
       <Separator />
-      <SidebarContent>
+      <SidebarContent as='nav'>
         {isLoading && <Spinner size={40} />}
         {!isLoading && chatList.length !== 0 ? (
           chatList.map((chat) => (
-            <Grid key={chat.id} columns='20px 1fr 20px'>
-              <img style={{ width: 20 }} src='/chat.svg' alt='chat_icon' />
-              <Typography kind='body-m-medium' as='p'>
-                {chat.name}
-              </Typography>
-              <img style={{ width: 13 }} src='/trash.svg' alt='trash_icon' />
-            </Grid>
+            <NavLink key={chat.id} to={chat.id}>
+              <Grid $columns='20px 1fr 20px'>
+                <img style={{ width: 20 }} src='/chat.svg' alt='chat_icon' />
+                <Typography kind='body-m-medium' as='p'>
+                  {chat.name}
+                </Typography>
+                <img style={{ width: 13 }} src='/trash.svg' alt='trash_icon' />
+              </Grid>
+            </NavLink>
           ))
         ) : (
           <Typography kind='body-m-medium'>Нет чатов</Typography>
@@ -62,8 +72,8 @@ export const ChatSidebar = () => {
       </SidebarContent>
       <SidebarFooter>
         <Grid
-          columns='30px 1fr 40px'
-          alignItems='center'
+          $columns='30px 1fr 40px'
+          $alignItems='center'
           style={{
             borderRadius: 18,
             border: "1px solid var(--outlined-border-color)",

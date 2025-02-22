@@ -2,7 +2,7 @@ import type { ITransaction } from "./transaction";
 
 export interface IMessage {
   id: string;
-  role: "assistant";
+  role: "assistant" | "user";
   type: "TEXT";
   status: "PENDING";
   tokens: number;

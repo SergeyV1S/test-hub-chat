@@ -22,7 +22,11 @@ export const initialState: IChatState = {
 export const chatSlice = createSlice({
   name: "chatSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentChat: (state, action: PayloadAction<IChat>) => {
+      state.currentChat = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       // Получить список чатов

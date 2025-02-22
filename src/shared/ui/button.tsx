@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 import { match } from "../lib";
@@ -149,3 +150,5 @@ export const Button = ({
 
   return <ButtonContainer {...containerProps}>{content}</ButtonContainer>;
 };
+
+export const StyledLinkButton = styled(ButtonContainer).attrs({ as: Link })``;

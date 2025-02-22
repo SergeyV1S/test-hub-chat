@@ -9,7 +9,7 @@
   "endOfLine": "lf",
   "arrowParens": "always",
   "importOrder": [
-    "^(react|react-router-dom|@hookform|axios|zod|@reduxjs/toolkit)$",
+    "^(react|react-router-dom|@hookform|axios|zod|@reduxjs/toolkit|styled-components)$",
     "<THIRD_PARTY_MODULES>",
     "^@/(.*)$",
     "^[./]"

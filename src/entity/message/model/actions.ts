@@ -5,7 +5,7 @@ import type { IPostSendMessageSettings } from "../api";
 
 export const getChatMessageListActionCreator = createAsyncThunk(
   "messageSlice/getChatMessageListActionCreator",
-  async (chatUid: string) => (await getChatMessageList({ queryParams: { page: 0, chatUid } })).data
+  async (chatUid: string) => (await getChatMessageList({ queryParams: { page: 1, chatUid } })).data
 );
 
 export const postSendMessageActionCreator = createAsyncThunk(
