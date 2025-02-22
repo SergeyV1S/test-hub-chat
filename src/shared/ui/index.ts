@@ -6,3 +6,6 @@ export * from "./flex";
 export * from "./form";
 export * from "./typography";
 export * from "./input";
+export * from "./select";
+export * from "./separator";
+export * from "./grid";

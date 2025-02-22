@@ -5,6 +5,9 @@ import { match } from "../lib";
 export const TTypographyKinds = [
   "input-md",
   "body-xl-semibold",
+  "body-m-medium",
+  "body-s-medium",
+  "body-m-semibold",
   "button-md",
   "input-validate"
 ] as const;
@@ -48,6 +51,21 @@ export const Typography = styled.p<ITypographyProps>`
         font-size: 14px;
         line-height: 20px;
         color: var(--destructive-color);
+      `,
+      "body-m-medium": () => css`
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 22px;
+      `,
+      "body-s-medium": () => css`
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 18px;
+      `,
+      "body-m-semibold": () => css`
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
       `
     })}
 `;

@@ -51,10 +51,16 @@ const ButtonContainer = styled(UnstyledButton).withConfig({
         font-size: 14px;
       `,
       icon: () => css`
-        padding: 2px;
-        height: 16px;
-        width: 16px;
-        font-size: 14px;
+        height: 36px;
+        width: 36px;
+
+        & > * {
+          position: absolute;
+          top: 50%;
+          padding-top: 6px;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
       `
     })}
 

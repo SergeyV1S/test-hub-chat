@@ -1,15 +1,23 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Container = styled.div`
+const centerStyles = css`
+  justify-content: center;
+`;
+
+interface IContainerProps {
+  centered?: boolean;
+}
+
+export const Container = styled.div<IContainerProps>`
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100vh;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+
+  ${({ centered }) => centered && centerStyles}
 
   @media (min-width: 640px) {
     max-width: 640px;

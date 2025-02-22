@@ -14,7 +14,7 @@ const SignIn = () => {
   const { signIn, signInForm } = useAuth();
 
   return (
-    <Container>
+    <Container centered>
       <Card>
         <CardHeader>
           <Typography kind='body-xl-semibold' as='h1'>
