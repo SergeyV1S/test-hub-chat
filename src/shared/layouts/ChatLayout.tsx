@@ -1,8 +1,10 @@
 import { Outlet } from "react-router-dom";
 
+import { Container } from "../ui";
+
 export const ChatLayout = () => (
-  <div>
+  <Container>
     <aside>Сайдбар</aside>
     <Outlet />
-  </div>
+  </Container>
 );

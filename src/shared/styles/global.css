@@ -12,3 +12,19 @@
   /* other */
   --hover-color: #222b44;
 }
+
+.spinner {
+  display: inline;
+  margin-right: 1rem;
+  color: lightgrey;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
