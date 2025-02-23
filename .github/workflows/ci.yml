@@ -99,4 +99,4 @@ jobs:
             yarn-${{ runner.os }}-
 
       - name: Run Lint
-        run: yarn lint-lint
+        run: yarn lint-staged
