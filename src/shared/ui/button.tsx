@@ -109,7 +109,7 @@ const ButtonContainer = styled(UnstyledButton).withConfig({
             transform: scale(1.1);
           `,
           ghost: () => css`
-            background: rgba(0, 0, 0, 0.05);
+            background: var(--bg-card-color);
             border-color: var(--outlined-border-color);
           `
         })}

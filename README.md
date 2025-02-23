@@ -25,6 +25,7 @@
 Перед запуском убедитесь, что у вас настроены следующие переменные окружения (см. `.env.example`):
 
 - `BASE_API_URL`: URL API.
+- `AUTHORIZATION_TOKEN`: AUTHORIZATION TOKEN.
 
 ---
 
@@ -37,6 +38,7 @@
 ```bash
 docker build \
   --build-arg BASE_API_URL=your_base_api_url \
+  --build-arg AUTHORIZATION_TOKEN=your_authorization_token \
   -t react-starter .
 ```
 
@@ -45,6 +47,7 @@ docker build \
 ```bash
 docker run \
   -e BASE_API_URL=your_base_api_url \
+  -e AUTHORIZATION_TOKEN=your_authorization_token \
   -d -p 5173:5173 react-starter
 ```
 
@@ -55,6 +58,7 @@ docker run \
 ```bash
 docker build \
   --build-arg BASE_API_URL=your_base_api_url \
+  --build-arg AUTHORIZATION_TOKEN=your_authorization_token \
   -t react-starter -f Dockerfile.ng .
 ```
 
@@ -63,6 +67,7 @@ docker build \
 ```bash
 docker run \
   -e BASE_API_URL=your_base_api_url \
+  -e AUTHORIZATION_TOKEN=your_authorization_token \
   -d -p 5173:80 react-starter
 ```
 

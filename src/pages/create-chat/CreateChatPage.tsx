@@ -7,23 +7,31 @@ const CreateChatPage = () => {
 
   return (
     <CreateChatContainer>
-      <SendMessageInput submitHandler={createChat} />
+      <SendMessageInputWrapper>
+        <SendMessageInput submitHandler={createChat} />
+      </SendMessageInputWrapper>
     </CreateChatContainer>
   );
 };
 
 const CreateChatContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
+  margin: 0 auto;
   width: 100%;
   height: calc(100vh - 32px);
-  margin: auto;
   background: var(--secondary-bg-color);
   border-radius: 18px;
   box-shadow: var(--sidebar-shadow);
   padding: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const SendMessageInputWrapper = styled.div`
+  width: 100%;
+  max-width: 600px;
 `;
 
 export default CreateChatPage;
