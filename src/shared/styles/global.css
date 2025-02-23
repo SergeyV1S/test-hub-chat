@@ -1,0 +1,63 @@
+:root {
+  /* background */
+  --main-bg-color: #0e0c15;
+  --bg-card-color: #222b44;
+  --secondary-bg-color: #121825;
+  --message-bg-color: #4785ff80;
+
+  /* button */
+  --main-color: #1c64f2;
+  --main-hover-color: #3676f5;
+  --destructive-color: #fe4242;
+  --destructive-hover-color: #d81d1d;
+  --outlined-hover-color: #4c5a81;
+  --outlined-border-color: #313e62;
+
+  /* shadow */
+  --base-shadow: 0 0px 10px var(--message-bg-color);
+  --sidebar-shadow: 0 0px 10px var(--bg-card-color);
+
+  /* scrollbar */
+  --scrollbar-track-color: #41558b;
+
+  /* other */
+  --hover-color: #222b44;
+  --placeholder-color: #616d8d;
+}
+
+.spinner {
+  display: inline;
+  margin-right: 1rem;
+  color: lightgrey;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 20px;
+  background-color: var(--scrollbar-track-color);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: var(--main-color);
+}

@@ -15,6 +15,7 @@ module.exports = {
   plugins: ["react-refresh", "react", "@typescript-eslint"],
   root: true,
   rules: {
+    "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/consistent-type-imports": "off",
     "react/prop-types": "off",
     "@typescript-eslint/no-unused-expressions": "off",

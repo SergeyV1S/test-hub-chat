@@ -1,2 +1,3 @@
-export const AUTH_KEY = "is-auth";
-export const I18NEXTKEY = "i18nextLng";
+export const localStorageKeys = {
+  USER_DATA: "user"
+} as const;

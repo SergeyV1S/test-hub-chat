@@ -1,17 +1,23 @@
-import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
-import { Spinner } from "@shared/ui/spinner";
+import {
+  createChatScreenRoute,
+  createCreateChatScreenRoute,
+  createSignInScreenRoute
+} from "@/pages";
+import { ChatLayout } from "@/shared/layouts";
 
-const RootScreen = lazy(() => import("./RootPage"));
+import { PrivateRoute } from "./PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
-    path: "/",
-    element: (
-      <Suspense fallback={<Spinner />}>
-        <RootScreen />
-      </Suspense>
-    )
+    element: <PrivateRoute />,
+    children: [
+      {
+        element: <ChatLayout />,
+        children: [createCreateChatScreenRoute(), createChatScreenRoute()]
+      },
+      createSignInScreenRoute()
+    ]
   }
 ]);

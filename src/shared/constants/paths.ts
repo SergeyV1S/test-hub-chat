@@ -1,7 +1,4 @@
-export const PATHS = {
-  SIGNIN: "/sign-in",
-  SIGNUP: "/sign-up",
-  PROFILE: "/profile",
-  OAUTH_YANDEX: "/oauth/yandex-callback",
-  OAUTH_VK: "/oauth/vk-callback"
+export const paths = {
+  CHAT: "/",
+  SIGNIN: "/sign-in"
 } as const;
