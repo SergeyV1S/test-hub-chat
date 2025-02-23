@@ -5,7 +5,7 @@ import { match } from "../lib";
 import { Spinner } from "./spinner";
 import { Typography } from "./typography";
 
-export const TButtonSizes = ["default", "icon"] as const;
+export const TButtonSizes = ["default", "icon", "small-icon"] as const;
 
 export const UnstyledButton = styled.button`
   cursor: pointer;
@@ -17,7 +17,7 @@ export const UnstyledButton = styled.button`
 
 type TButtonSize = (typeof TButtonSizes)[number];
 
-export const ButtonKinds = ["primary", "outlined", "destructive"] as const;
+export const ButtonKinds = ["primary", "outlined", "destructive", "void"] as const;
 
 export type TButtonKind = (typeof ButtonKinds)[number];
 
@@ -62,7 +62,8 @@ const ButtonContainer = styled(UnstyledButton).withConfig({
           left: 50%;
           transform: translate(-50%, -50%);
         }
-      `
+      `,
+      "small-icon": () => css``
     })}
 
   ${({ kind }) =>
@@ -76,6 +77,11 @@ const ButtonContainer = styled(UnstyledButton).withConfig({
       `,
       destructive: () => css`
         background: transparent;
+      `,
+      void: () => css`
+        transition: transform 0.3s ease-in-out;
+        background: transparent;
+        border: none;
       `
     })}
 
@@ -93,6 +99,9 @@ const ButtonContainer = styled(UnstyledButton).withConfig({
           `,
           destructive: () => css`
             background: var(--destructive-hover-color);
+          `,
+          void: () => css`
+            transform: scale(1.1);
           `
         })}
       }

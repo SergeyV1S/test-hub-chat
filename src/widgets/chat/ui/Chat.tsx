@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import {
+  AssistantMessage,
+  UserMessage,
   chatSliceSelectors,
   getModelListActionCreator,
   patchUpdateModelActionCreator
@@ -59,11 +61,23 @@ export const Chat = () => {
         {isLoading && <Spinner />}
         {!isLoading && chatMessages.length !== 0 && (
           <>
-            {chatMessages.map((message) => (
-              <MessageBubble key={message.id} $sender={message.role}>
-                {message.content}
-              </MessageBubble>
-            ))}
+            {chatMessages.map((message) =>
+              message.role === "user" ? (
+                <UserMessage
+                  content={message.content}
+                  created_at={message.created_at}
+                  key={message.id}
+                />
+              ) : (
+                <AssistantMessage
+                  key={message.id}
+                  content={message.content}
+                  tokens={message.tokens}
+                  model={currentModelValue?.label || "gpt-4o"}
+                  created_at={message.created_at}
+                />
+              )
+            )}
           </>
         )}
         {isLoadingAssistent && <Typography kind='body-s-medium'>ИИ печатает...</Typography>}
@@ -127,13 +141,4 @@ const MessagesContainer = styled.div`
   flex-direction: column;
   gap: 8px;
   padding-bottom: 16px;
-`;
-
-const MessageBubble = styled.div<{ $sender: "user" | "assistant" }>`
-  max-width: 75%;
-  padding: 12px;
-  border-radius: 18px;
-  background: ${({ $sender }) => ($sender === "user" ? "var(--message-bg-color)" : "transparent")};
-  color: #fff;
-  align-self: ${({ $sender }) => ($sender === "user" ? "flex-end" : "flex-start")};
 `;
