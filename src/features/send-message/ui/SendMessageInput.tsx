@@ -11,7 +11,7 @@ interface ISendMessageInput {
 export const SendMessageInput = ({ submitHandler }: ISendMessageInput) => {
   const [input, setInput] = useState("");
 
-  const { isLoadingAssistent } = useAppSelector(messageSliceSelectors.getChatState);
+  const { isLoadingAssistent, error } = useAppSelector(messageSliceSelectors.getChatState);
 
   return (
     <Grid $columns='1fr 50px'>
@@ -33,7 +33,7 @@ export const SendMessageInput = ({ submitHandler }: ISendMessageInput) => {
           submitHandler(input);
           setInput("");
         }}
-        disabled={isLoadingAssistent || !input.trim()}
+        disabled={isLoadingAssistent || error || !input.trim()}
       >
         ➤
       </Button>

@@ -5,27 +5,9 @@ import { EventSource } from "eventsource";
 
 import { getChatMessageListActionCreator, messageSliceActions } from "@/entity/message";
 import { useAppDispatch } from "@/shared/store";
-import { IMessage } from "@/shared/types";
+import { EServerSendEvents } from "@/shared/types";
+import type { IMessage, IServerSendEventsResponse } from "@/shared/types";
 import { Chat } from "@/widgets/chat";
-
-enum EServerSendEvents {
-  MESSAGE_CREATE = "MESSAGE_CREATE",
-  MESSAGE_UPDATE = "MESSAGE_UPDATE",
-  JOB_CREATE = "JOB_CREATE",
-  JOB_START = "JOB_START",
-  JOB_UPDATE = "JOB_UPDATE",
-  JOB_DONE = "JOB_DONE",
-  UPDATE = "UPDATE",
-  TRANSACTION_CREATE = "TRANSACTION_CREATE",
-  SUBSCRIPTION_UPDATE = "SUBSCRIPTION_UPDATE"
-}
-
-interface IServerSendEventsResponse<Message> {
-  name: EServerSendEvents;
-  data: {
-    message: Message;
-  };
-}
 
 const ChatPage = () => {
   const { chatId } = useParams() as { chatId: string };
@@ -50,6 +32,11 @@ const ChatPage = () => {
 
     if (name === EServerSendEvents.JOB_CREATE) {
       dispatch(messageSliceActions.setIsLoadingAssistent(true));
+    }
+
+    if (name === EServerSendEvents.JOB_ERROR) {
+      dispatch(messageSliceActions.setChatError(data.job.error));
+      dispatch(messageSliceActions.setIsLoadingAssistent(false));
     }
 
     if (name === EServerSendEvents.JOB_DONE) {
