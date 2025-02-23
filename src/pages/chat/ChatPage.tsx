@@ -57,6 +57,10 @@ const ChatPage = () => {
     dispatch(getChatMessageListActionCreator(chatId));
   }, [chatId, dispatch]);
 
+  useEffect(() => {
+    dispatch(messageSliceActions.setChatError(undefined));
+  }, []);
+
   return <Chat key={chatId} />;
 };
 
