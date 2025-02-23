@@ -43,7 +43,7 @@ export const ChatSidebar = () => {
   return (
     <Sidebar>
       <SidebarHeader>
-        <ChangeLanguageBlock $justifyContent='space-between' $alignItems='center'>
+        <ChangeLanguageBlock>
           <img src='/bot_hub_logo.png' alt='logo' />
           <Select options={["RU", "EN"]} value={language} onChange={(value) => setLanguage(value)}>
             <img src='/net.svg' alt='network_icon' />
@@ -105,7 +105,9 @@ export const ChatSidebar = () => {
 };
 
 const ChangeLanguageBlock = styled(Flex)`
-  width: "100%";
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 
   @media (max-width: 768px) {
     justify-content: start;
