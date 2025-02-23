@@ -1,9 +1,18 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 
+import { messageSliceActions } from "@/entity/message";
 import { SendMessageInput, useChat } from "@/features/send-message";
+import { useAppDispatch } from "@/shared/store";
 
 const CreateChatPage = () => {
   const { createChat } = useChat();
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(messageSliceActions.setChatError(undefined));
+  }, []);
 
   return (
     <CreateChatContainer>
