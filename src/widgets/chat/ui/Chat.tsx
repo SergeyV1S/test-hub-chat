@@ -16,7 +16,7 @@ export const Chat = () => {
   const dispatch = useAppDispatch();
   const { chatId } = useParams() as { chatId: string };
   const { sendMessage } = useChat();
-  const { chatMessages, isLoading, isLoadingAssistent } = useAppSelector(
+  const { chatMessages, error, isLoading, isLoadingAssistent } = useAppSelector(
     messageSliceSelectors.getChatState
   );
   const { modelList, currentChat } = useAppSelector(chatSliceSelectors.getChatState);
@@ -83,7 +83,10 @@ export const Chat = () => {
             <Typography kind='body-l-regular'>В этом чате еще нет сообщений</Typography>
           </EmptyChat>
         )}
-        {isLoadingAssistent && <Typography kind='body-s-medium'>ИИ печатает...</Typography>}
+        {isLoadingAssistent && !error && (
+          <Typography kind='body-s-medium'>ИИ печатает...</Typography>
+        )}
+        {error && <Typography kind='body-m-regular'>Произошла ошибка - {error}</Typography>}
         <div ref={messagesEndRef} />
       </MessagesContainer>
       <div style={{ marginBottom: 14 }}>

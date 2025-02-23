@@ -22,6 +22,9 @@ export const messageSlice = createSlice({
     },
     setIsLoadingAssistent: (state, action: PayloadAction<boolean>) => {
       state.isLoadingAssistent = action.payload;
+    },
+    setChatError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
     }
   },
   extraReducers: (builder) => {
