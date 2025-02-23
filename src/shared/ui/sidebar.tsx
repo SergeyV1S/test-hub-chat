@@ -35,7 +35,7 @@ export const SidebarContent = styled.div`
   flex-direction: column;
   gap: 20px;
   box-sizing: border-box;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 const CloseButton = styled.button`

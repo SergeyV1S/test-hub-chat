@@ -29,7 +29,7 @@ export const inputMdStyles = css`
 
 export const Typography = styled.p<ITypographyProps>`
   color: white;
-  font-family: inherit;
+  font-family: "IBM Plex Sans", sans-serif;
 
   ${({ kind }) =>
     match(kind, {

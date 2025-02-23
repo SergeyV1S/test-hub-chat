@@ -42,7 +42,7 @@ export const ChatSidebar = () => {
         <Flex $justifyContent='space-between' $alignItems='center' width='100%'>
           <img src='/bot_hub_logo.png' alt='logo' />
           <Select options={["RU", "EN"]} value={language} onChange={(value) => setLanguage(value)}>
-            {<img src='/net.svg' alt='network_icon' />}
+            <img src='/net.svg' alt='network_icon' />
           </Select>
         </Flex>
         <Flex $gap='16px'>

@@ -17,7 +17,7 @@ export const UnstyledButton = styled.button`
 
 type TButtonSize = (typeof TButtonSizes)[number];
 
-export const ButtonKinds = ["primary", "outlined", "destructive", "void"] as const;
+export const ButtonKinds = ["primary", "outlined", "destructive", "void", "ghost"] as const;
 
 export type TButtonKind = (typeof ButtonKinds)[number];
 
@@ -82,6 +82,12 @@ const ButtonContainer = styled(UnstyledButton).withConfig({
         transition: transform 0.3s ease-in-out;
         background: transparent;
         border: none;
+      `,
+      ghost: () => css`
+        background: transparent;
+        color: var(--main-color);
+        transition: all 0.3s ease;
+        border-radius: 8px;
       `
     })}
 
@@ -102,6 +108,10 @@ const ButtonContainer = styled(UnstyledButton).withConfig({
           `,
           void: () => css`
             transform: scale(1.1);
+          `,
+          ghost: () => css`
+            background: rgba(0, 0, 0, 0.05);
+            border-color: var(--outlined-border-color);
           `
         })}
       }

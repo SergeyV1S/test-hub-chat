@@ -3,13 +3,11 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import {
-  AssistantMessage,
-  UserMessage,
   chatSliceSelectors,
   getModelListActionCreator,
   patchUpdateModelActionCreator
 } from "@/entity/chat";
-import { messageSliceSelectors } from "@/entity/message";
+import { AssistantMessage, UserMessage, messageSliceSelectors } from "@/entity/message";
 import { useChat } from "@/features/send-message";
 import { useAppDispatch, useAppSelector } from "@/shared/store";
 import { Button, Grid, Input, Select, Spinner, Typography } from "@/shared/ui";

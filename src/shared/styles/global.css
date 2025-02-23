@@ -17,6 +17,9 @@
   --base-shadow: 0 0px 10px var(--message-bg-color);
   --sidebar-shadow: 0 0px 10px var(--bg-card-color);
 
+  /* scrollbar */
+  --scrollbar-track-color: #41558b;
+
   /* other */
   --hover-color: #222b44;
   --placeholder-color: #616d8d;
@@ -43,4 +46,18 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 20px;
+  background-color: var(--scrollbar-track-color);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: var(--main-color);
 }

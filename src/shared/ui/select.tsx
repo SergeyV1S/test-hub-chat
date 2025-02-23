@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import { useClickOutside } from "../hooks";
 import { Typography } from "./typography";
 
 const MAX_DROPDOWN_HEIGHT = 200;
@@ -10,11 +11,11 @@ const SelectContainer = styled.div<{ width?: string }>`
   width: ${({ width }) => width || "fit-content"};
   cursor: pointer;
   margin-right: 10px;
+  font-family: "IBM Plex Sans", sans-serif;
 `;
 
 const SelectedOption = styled.div`
   font-size: 16px;
-  color: var(--text-color);
   display: flex;
   width: fit-content;
   align-items: center;
@@ -24,9 +25,8 @@ const SelectedOption = styled.div`
   padding: 10px;
 `;
 
-const DropdownList = styled.div<{ $dropUp: boolean }>`
+const DropdownList = styled.div<{ $dropUp: boolean; $isOpen: boolean }>`
   position: absolute;
-  ${({ $dropUp }) => ($dropUp ? "bottom: 100%;" : "top: 100%;")}
   left: 0;
   width: 100%;
   padding: 5px;
@@ -34,11 +34,19 @@ const DropdownList = styled.div<{ $dropUp: boolean }>`
   background-color: var(--secondary-bg-color);
   border-radius: 8px;
   z-index: 10;
-  max-height: ${MAX_DROPDOWN_HEIGHT}px;
   overflow-y: auto;
+  heigth: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-top: ${({ $dropUp }) => ($dropUp ? "0" : "4px")};
   margin-bottom: ${({ $dropUp }) => ($dropUp ? "4px" : "0")};
+
+  ${({ $dropUp }) => ($dropUp ? "bottom: 100%;" : "top: 100%;")}
+
+  max-height: ${({ $isOpen }) => ($isOpen ? `${MAX_DROPDOWN_HEIGHT}px` : "0")};
+  opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
 `;
 
 const DropdownItem = styled.div`
@@ -64,6 +72,7 @@ export const Select: React.FC<ISelectProps> = ({ options, value, width, children
   const [isOpen, setIsOpen] = useState(false);
   const [dropUp, setDropUp] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
+  useClickOutside(selectRef, () => setIsOpen(false));
 
   const handleSelectClick = () => {
     setIsOpen((prev) => !prev);
@@ -91,15 +100,15 @@ export const Select: React.FC<ISelectProps> = ({ options, value, width, children
         {value}
       </SelectedOption>
 
-      {isOpen && (
-        <DropdownList $dropUp={dropUp}>
+      {
+        <DropdownList $dropUp={dropUp} $isOpen={isOpen}>
           {options.map((option, index) => (
             <DropdownItem key={index} onClick={() => handleOptionClick(option)}>
               <Typography kind='body-s-medium'>{option}</Typography>
             </DropdownItem>
           ))}
         </DropdownList>
-      )}
+      }
     </SelectContainer>
   );
 };
