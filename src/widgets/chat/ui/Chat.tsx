@@ -119,7 +119,7 @@ const MessagesContainer = styled.div`
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 20px;
   padding-bottom: 16px;
 `;
 

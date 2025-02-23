@@ -33,7 +33,7 @@ export const SidebarContent = styled.div`
   padding: 0px 20px 20px 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
   box-sizing: border-box;
   overflow-y: auto;
 `;

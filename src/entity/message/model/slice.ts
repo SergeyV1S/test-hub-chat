@@ -31,7 +31,9 @@ export const messageSlice = createSlice({
       .addCase(
         getChatMessageListActionCreator.fulfilled,
         (state, action: PayloadAction<IBaseResponse<IChatMessage[]>>) => {
-          state.chatMessages = action.payload.data.reverse();
+          state.chatMessages = action.payload.data
+            .filter((message) => message.content !== null)
+            .reverse();
           state.isLoading = false;
         }
       )

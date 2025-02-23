@@ -1,5 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 
+import { TrashIcon } from "lucide-react";
+
 import { deleteChatActionCreator } from "@/entity/chat";
 import { paths } from "@/shared/constants";
 import { useAppDispatch } from "@/shared/store";
@@ -21,7 +23,7 @@ export const DeleteChatButton = ({ chatId }: { chatId: string }) => {
 
   return (
     <Button kind='destructive' size='icon' onClick={deleteChat}>
-      <img style={{ width: 13 }} src='/trash.svg' alt='trash_icon' />
+      <TrashIcon size={18} />
     </Button>
   );
 };

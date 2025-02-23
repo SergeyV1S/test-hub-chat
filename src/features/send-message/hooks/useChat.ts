@@ -14,7 +14,7 @@ export const useChat = () => {
   };
 
   const createChat = (message: string) => {
-    dispatch(postCreateChatActionCreator({ name: message.slice(0, 10) })).then((action) => {
+    dispatch(postCreateChatActionCreator({ name: message })).then((action) => {
       const payload = action.payload as { id: string };
       if (payload.id) {
         navigate(`/${payload.id}`);

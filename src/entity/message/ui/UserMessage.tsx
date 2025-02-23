@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { CopyIcon } from "lucide-react";
+
 import { copyToBuffer, getTime } from "@/shared/lib";
 import { Button, Flex, Typography } from "@/shared/ui";
 
@@ -11,7 +13,7 @@ interface IUserMessageProps {
 export const UserMessage = (props: IUserMessageProps) => (
   <UserMessageContainer $gap='10px' $alignItems='end'>
     <Button kind='void' size='small-icon' onClick={() => copyToBuffer(props.content)}>
-      <img src='/copy.svg' alt='copy_icon' />
+      <CopyIcon size={15} />
     </Button>
     <UserMessageBody>
       <Typography kind='body-l-regular'>{props.content || "Произошла ошибка"}</Typography>
