@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { GlobeIcon, MessageSquareIcon, MessageSquarePlusIcon, SearchIcon } from "lucide-react";
+
 import { chatSliceSelectors, getChatsActionCreator } from "@/entity/chat";
 import { DeleteChatButton } from "@/features/delete-chat";
 import { LogoutButton } from "@/features/logout";
@@ -46,15 +48,15 @@ export const ChatSidebar = () => {
         <ChangeLanguageBlock>
           <img src='/bot_hub_logo.png' alt='logo' />
           <Select options={["RU", "EN"]} value={language} onChange={(value) => setLanguage(value)}>
-            <img src='/net.svg' alt='network_icon' />
+            <GlobeIcon size={19} />
           </Select>
         </ChangeLanguageBlock>
         <Flex $gap='16px'>
           <StyledLinkButton size='icon' kind='primary' to={paths.CHAT}>
-            <img style={{ width: 20 }} src='/add_chat.svg' alt='add_chat_icon' />
+            <MessageSquarePlusIcon size={20} color='white' />
           </StyledLinkButton>
           <Button size='icon' kind='outlined'>
-            <img style={{ width: 20 }} src='/search.svg' alt='add_chat_icon' />
+            <SearchIcon size={20} />
           </Button>
         </Flex>
       </SidebarHeader>
@@ -65,8 +67,8 @@ export const ChatSidebar = () => {
           chatList.map((chat) => (
             <StyledNavLink key={chat.id} to={chat.id} onClick={(e) => e.stopPropagation()}>
               <Grid $columns='20px 1fr 30px' $alignItems='center'>
-                <img style={{ width: 20 }} src='/chat.svg' alt='chat_icon' />
-                <Typography kind='body-m-medium' as='p'>
+                <MessageSquareIcon size={20} />
+                <Typography kind='body-m-medium' truncate>
                   {chat.name}
                 </Typography>
                 <DeleteChatButton chatId={chat.id} />

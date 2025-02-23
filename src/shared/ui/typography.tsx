@@ -19,6 +19,7 @@ export type TTypographyKind = (typeof TTypographyKinds)[number];
 
 interface ITypographyProps {
   kind: TTypographyKind;
+  truncate?: boolean;
 }
 
 export const inputMdStyles = css`
@@ -27,7 +28,15 @@ export const inputMdStyles = css`
   line-height: 22px;
 `;
 
-export const Typography = styled.p<ITypographyProps>`
+const truncateStyles = css`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const Typography = styled.p.withConfig({
+  shouldForwardProp: (prop) => !["truncate"].includes(prop)
+})<ITypographyProps>`
   color: white;
   font-family: "IBM Plex Sans", sans-serif;
 
@@ -87,4 +96,6 @@ export const Typography = styled.p<ITypographyProps>`
         text-align: end;
       `
     })}
+
+  ${({ truncate }) => truncate && truncateStyles}
 `;

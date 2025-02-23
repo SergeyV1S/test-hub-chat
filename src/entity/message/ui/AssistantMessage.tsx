@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { CopyIcon } from "lucide-react";
+
 import { copyToBuffer, getTime } from "@/shared/lib";
 import { Button, Flex, Grid, Typography } from "@/shared/ui";
 
@@ -30,7 +32,7 @@ export const AssistantMessage = (props: IAssistantMessageProps) => (
       <Flex $alignItems='center' $justifySelf='start' $gap='16px'>
         {props.tokens !== 0 && <Typography kind='body-m-regular'>-{props.tokens} CAPS</Typography>}
         <Button kind='void' size='small-icon' onClick={() => copyToBuffer(props.content)}>
-          <img src='/copy.svg' alt='copy_icon' />
+          <CopyIcon size={15} />
         </Button>
       </Flex>
       <Typography kind='body-xs-regular'>{getTime(props.created_at)}</Typography>

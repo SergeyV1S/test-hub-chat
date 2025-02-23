@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
+import { LogOut } from "lucide-react";
+
 import { localStorageKeys, paths } from "@/shared/constants";
 import { useLocalStorage } from "@/shared/hooks";
 import { Button } from "@/shared/ui";
@@ -14,8 +16,8 @@ export const LogoutButton = () => {
   };
 
   return (
-    <Button kind='outlined' size='icon' onClick={logout}>
-      <img style={{ width: 13 }} src='/exit.svg' alt='trash_icon' />
+    <Button kind='ghost' size='icon' onClick={logout}>
+      <LogOut size={18} color='var(--destructive-color)' />
     </Button>
   );
 };

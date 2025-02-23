@@ -58,7 +58,6 @@ const ButtonContainer = styled(UnstyledButton).withConfig({
         & > * {
           position: absolute;
           top: 50%;
-          padding-top: 6px;
           left: 50%;
           transform: translate(-50%, -50%);
         }
@@ -144,7 +143,11 @@ export const Button = ({
   const content = isLoading ? (
     <>
       <Hide>
-        <Typography kind='button-md' as='span'>
+        <Typography
+          kind='button-md'
+          as='span'
+          style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+        >
           {children}
         </Typography>
       </Hide>
@@ -153,7 +156,11 @@ export const Button = ({
       </div>
     </>
   ) : (
-    <Typography kind='button-md' as='span'>
+    <Typography
+      kind='button-md'
+      style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      as='span'
+    >
       {children}
     </Typography>
   );
