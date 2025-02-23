@@ -2,14 +2,13 @@ import { Suspense, lazy } from "react";
 import type { RouteObject } from "react-router-dom";
 
 import { paths } from "@/shared/constants";
-import { Spinner } from "@/shared/ui";
 
 const ChatScreen = lazy(() => import("./ChatPage"));
 
 export const createChatScreenRoute = (): RouteObject => ({
-  path: `${paths.CHAT}/:chatUid`,
+  path: `${paths.CHAT}/:chatId`,
   element: (
-    <Suspense fallback={<Spinner />}>
+    <Suspense fallback={<div />}>
       <ChatScreen />
     </Suspense>
   ),

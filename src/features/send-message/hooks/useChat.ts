@@ -7,10 +7,10 @@ import { useAppDispatch } from "@/shared/store";
 export const useChat = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { chatUid } = useParams() as { chatUid: string };
+  const { chatId } = useParams() as { chatId: string };
 
   const sendMessage = (message: string) => {
-    dispatch(postSendMessageActionCreator({ chatId: chatUid, message }));
+    dispatch(postSendMessageActionCreator({ chatId: chatId, message }));
   };
 
   const createChat = (message: string) => {

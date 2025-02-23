@@ -19,9 +19,9 @@ export const postCreateChatActionCreator = createAsyncThunk(
     })
 );
 
-export const deletChatActionCreator = createAsyncThunk(
-  "chatSlice/deletChatActionCreator",
-  async (data: { chatUid: string }) => (await deleteChat({ data })).data
+export const deleteChatActionCreator = createAsyncThunk(
+  "chatSlice/deleteChatActionCreator",
+  async (chatId: string) => (await deleteChat({ data: { chatId } })).data
 );
 
 export const getModelListActionCreator = createAsyncThunk(

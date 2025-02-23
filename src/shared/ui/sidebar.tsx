@@ -5,6 +5,9 @@ const SidebarContainer = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== "isOpen"
 })<{ isOpen: boolean }>`
   position: fixed;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 118px 30px 1fr 112px;
   top: 0;
   left: 0;
   width: 100%;
@@ -32,6 +35,7 @@ export const SidebarContent = styled.div`
   flex-direction: column;
   gap: 20px;
   box-sizing: border-box;
+  overflow-y: scroll;
 `;
 
 const CloseButton = styled.button`

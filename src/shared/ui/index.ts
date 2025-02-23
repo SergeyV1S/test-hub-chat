@@ -9,3 +9,4 @@ export * from "./input";
 export * from "./select";
 export * from "./separator";
 export * from "./grid";
+export * from "./styled-navlink";

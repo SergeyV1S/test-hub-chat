@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 
 import { chatSliceSelectors, getChatsActionCreator } from "@/entity/chat";
+import { DeleteChatButton } from "@/features/delete-chat";
 import { LogoutButton } from "@/features/logout";
 import type { TSignInFormSchema } from "@/features/sign-in";
 import { localStorageKeys, paths } from "@/shared/constants";
@@ -14,13 +14,16 @@ import {
   Separator,
   Spinner,
   StyledLinkButton,
+  StyledNavLink,
   Typography
 } from "@/shared/ui";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/shared/ui/sidebar";
 
 export const ChatSidebar = () => {
   const dispatch = useAppDispatch();
-  const { chatList, isLoading } = useAppSelector(chatSliceSelectors.getChatState);
+  const { chatList, isLoading, isChatListFetched } = useAppSelector(
+    chatSliceSelectors.getChatState
+  );
 
   const [language, setLanguage] = useState("RU");
   const userData = JSON.parse(
@@ -53,18 +56,18 @@ export const ChatSidebar = () => {
       </SidebarHeader>
       <Separator />
       <SidebarContent as='nav'>
-        {isLoading && <Spinner size={40} />}
-        {!isLoading && chatList.length !== 0 ? (
+        {isLoading && !isChatListFetched && <Spinner size={40} />}
+        {isChatListFetched && chatList.length !== 0 ? (
           chatList.map((chat) => (
-            <Grid key={chat.id} $columns='20px 1fr 20px'>
-              <img style={{ width: 20 }} src='/chat.svg' alt='chat_icon' />
-              <NavLink to={chat.id}>
+            <StyledNavLink key={chat.id} to={chat.id} onClick={(e) => e.stopPropagation()}>
+              <Grid $columns='20px 1fr 30px' $alignItems='center'>
+                <img style={{ width: 20 }} src='/chat.svg' alt='chat_icon' />
                 <Typography kind='body-m-medium' as='p'>
                   {chat.name}
                 </Typography>
-              </NavLink>
-              <img style={{ width: 13 }} src='/trash.svg' alt='trash_icon' />
-            </Grid>
+                <DeleteChatButton chatId={chat.id} />
+              </Grid>
+            </StyledNavLink>
           ))
         ) : (
           <Typography kind='body-m-medium'>Нет чатов</Typography>

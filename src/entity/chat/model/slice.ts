@@ -5,7 +5,7 @@ import { pendingHandler, rejectedHandler } from "@/shared/store";
 import type { IChat, IModel } from "@/shared/types";
 
 import {
-  deletChatActionCreator,
+  deleteChatActionCreator,
   getChatsActionCreator,
   getModelListActionCreator,
   patchUpdateModelActionCreator,
@@ -16,6 +16,7 @@ import type { IChatState } from "./types";
 export const initialState: IChatState = {
   isLoading: false,
   chatList: [],
+  isChatListFetched: false,
   modelList: []
 };
 
@@ -35,6 +36,7 @@ export const chatSlice = createSlice({
         getChatsActionCreator.fulfilled,
         (state, action: PayloadAction<IBaseResponse<IChat[]>>) => {
           state.chatList = action.payload.data;
+          state.isChatListFetched = true;
           state.isLoading = false;
         }
       )
@@ -47,12 +49,12 @@ export const chatSlice = createSlice({
       })
       .addCase(postCreateChatActionCreator.rejected, rejectedHandler)
       // Удалить чат
-      .addCase(deletChatActionCreator.pending, pendingHandler)
-      .addCase(deletChatActionCreator.fulfilled, (state, action: PayloadAction<IChat>) => {
-        state.chatList = state.chatList.filter((chat) => chat.id === action.payload.id);
+      .addCase(deleteChatActionCreator.pending, pendingHandler)
+      .addCase(deleteChatActionCreator.fulfilled, (state, action: PayloadAction<IChat>) => {
+        state.chatList = state.chatList.filter((chat) => chat.id !== action.payload.id);
         state.isLoading = false;
       })
-      .addCase(deletChatActionCreator.rejected, rejectedHandler)
+      .addCase(deleteChatActionCreator.rejected, rejectedHandler)
       // Получить AI модели
       .addCase(getModelListActionCreator.pending, pendingHandler)
       .addCase(getModelListActionCreator.fulfilled, (state, action: PayloadAction<IModel[]>) => {

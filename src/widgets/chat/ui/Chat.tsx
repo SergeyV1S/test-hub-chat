@@ -14,7 +14,7 @@ import { Button, Grid, Input, Select, Spinner } from "@/shared/ui";
 
 export const Chat = () => {
   const dispatch = useAppDispatch();
-  const { chatUid } = useParams() as { chatUid: string };
+  const { chatId } = useParams() as { chatId: string };
   const { chatMessages, isLoading, isLoadingSend } = useAppSelector(
     messageSliceSelectors.getChatState
   );
@@ -28,7 +28,7 @@ export const Chat = () => {
     const newModel = modelList.find((model) => model.label === value);
     dispatch(
       patchUpdateModelActionCreator({
-        chatId: chatUid,
+        chatId: chatId,
         body: {
           modelId: newModel?.id
         }
@@ -37,7 +37,9 @@ export const Chat = () => {
   };
 
   useEffect(() => {
-    dispatch(getModelListActionCreator());
+    if (modelList.length === 0) {
+      dispatch(getModelListActionCreator());
+    }
   }, []);
 
   return (

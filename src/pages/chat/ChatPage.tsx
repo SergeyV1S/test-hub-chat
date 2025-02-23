@@ -6,14 +6,14 @@ import { useAppDispatch } from "@/shared/store";
 import { Chat } from "@/widgets/chat";
 
 const ChatPage = () => {
-  const { chatUid } = useParams() as { chatUid: string };
+  const { chatId } = useParams() as { chatId: string };
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getChatMessageListActionCreator(chatUid));
-  }, [chatUid, dispatch]);
+    dispatch(getChatMessageListActionCreator(chatId));
+  }, [chatId, dispatch]);
 
-  return <Chat key={chatUid} />;
+  return <Chat key={chatId} />;
 };
 
 export default ChatPage;

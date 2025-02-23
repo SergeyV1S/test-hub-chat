@@ -106,7 +106,7 @@ export interface IButtonProps {
   disabled?: boolean | string;
   isLoading?: boolean;
   isRounded?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Hide = styled.div`
