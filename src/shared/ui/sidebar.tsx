@@ -45,7 +45,8 @@ const CloseButton = styled.button`
   right: 20px;
   background: transparent;
   border: none;
-  font-size: 24px;
+  font-size: 28px;
+  color: white;
   cursor: pointer;
 
   @media (min-width: 768px) {
@@ -72,10 +73,9 @@ const ToggleButton = styled.button`
 `;
 
 export const SidebarHeader = styled.div`
-  display: flex;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
+  grid-template-columns: 1fr;
   gap: 20px;
   padding: 20px 20px 0px 20px;
   border-bottom: 1px solid var(--sidebar-border-color);
@@ -90,15 +90,15 @@ export const SidebarFooter = styled.div`
 `;
 
 export const Sidebar = ({ children }: { children: React.ReactNode }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => setIsOpen((prev) => !prev);
+  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
   return (
     <>
-      {!isOpen && <ToggleButton onClick={toggleSidebar}>Меню</ToggleButton>}
+      {!isSidebarOpen && <ToggleButton onClick={toggleSidebar}>Меню</ToggleButton>}
 
-      <SidebarContainer isOpen={isOpen}>
+      <SidebarContainer isOpen={isSidebarOpen}>
         <CloseButton onClick={toggleSidebar}>×</CloseButton>
         {children}
       </SidebarContainer>

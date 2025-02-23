@@ -59,6 +59,7 @@ const ChatPage = () => {
     if (
       name === EServerSendEvents.MESSAGE_UPDATE &&
       "chat_id" in data.message &&
+      data.message.content &&
       data.message.role === "assistant"
     ) {
       dispatch(messageSliceActions.setNewMessage(data.message));

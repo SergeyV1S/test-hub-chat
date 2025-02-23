@@ -28,7 +28,7 @@ export const AssistantMessage = (props: IAssistantMessageProps) => (
     <Grid $columns='40px 1fr 50px' $alignItems='center'>
       <div className='' />
       <Flex $alignItems='center' $justifySelf='start' $gap='16px'>
-        <Typography kind='body-m-regular'>-{props.tokens} CAPS</Typography>
+        {props.tokens !== 0 && <Typography kind='body-m-regular'>-{props.tokens} CAPS</Typography>}
         <Button kind='void' size='small-icon' onClick={() => copyToBuffer(props.content)}>
           <img src='/copy.svg' alt='copy_icon' />
         </Button>

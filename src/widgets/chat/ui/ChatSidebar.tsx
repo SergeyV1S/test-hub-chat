@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 import { chatSliceSelectors, getChatsActionCreator } from "@/entity/chat";
 import { DeleteChatButton } from "@/features/delete-chat";
 import { LogoutButton } from "@/features/logout";
 import type { TSignInFormSchema } from "@/features/sign-in";
 import { localStorageKeys, paths } from "@/shared/constants";
+import { useLocalStorage } from "@/shared/hooks";
 import { useAppDispatch, useAppSelector } from "@/shared/store";
 import {
   Button,
@@ -25,9 +27,11 @@ export const ChatSidebar = () => {
     chatSliceSelectors.getChatState
   );
 
+  const { getValueFromLocalStorage } = useLocalStorage();
+
   const [language, setLanguage] = useState("RU");
   const userData = JSON.parse(
-    localStorage.getItem(localStorageKeys.USER_DATA)!
+    getValueFromLocalStorage(localStorageKeys.USER_DATA)!
   ) as TSignInFormSchema;
 
   useEffect(() => {
@@ -39,12 +43,12 @@ export const ChatSidebar = () => {
   return (
     <Sidebar>
       <SidebarHeader>
-        <Flex $justifyContent='space-between' $alignItems='center' width='100%'>
+        <ChangeLanguageBlock $justifyContent='space-between' $alignItems='center'>
           <img src='/bot_hub_logo.png' alt='logo' />
           <Select options={["RU", "EN"]} value={language} onChange={(value) => setLanguage(value)}>
             <img src='/net.svg' alt='network_icon' />
           </Select>
-        </Flex>
+        </ChangeLanguageBlock>
         <Flex $gap='16px'>
           <StyledLinkButton size='icon' kind='primary' to={paths.CHAT}>
             <img style={{ width: 20 }} src='/add_chat.svg' alt='add_chat_icon' />
@@ -99,3 +103,12 @@ export const ChatSidebar = () => {
     </Sidebar>
   );
 };
+
+const ChangeLanguageBlock = styled(Flex)`
+  width: "100%";
+
+  @media (max-width: 768px) {
+    justify-content: start;
+    gap: 70px;
+  }
+`;

@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router-dom";
 
 import { localStorageKeys, paths } from "@/shared/constants";
+import { useLocalStorage } from "@/shared/hooks";
 import { Button } from "@/shared/ui";
 
 export const LogoutButton = () => {
   const navigate = useNavigate();
+  const { removeValueFromLocalStorage } = useLocalStorage();
 
   const logout = () => {
-    localStorage.removeItem(localStorageKeys.USER_DATA);
+    removeValueFromLocalStorage(localStorageKeys.USER_DATA);
     navigate(paths.SIGNIN);
   };
 

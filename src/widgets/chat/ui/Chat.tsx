@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -8,19 +8,19 @@ import {
   patchUpdateModelActionCreator
 } from "@/entity/chat";
 import { AssistantMessage, UserMessage, messageSliceSelectors } from "@/entity/message";
-import { useChat } from "@/features/send-message";
+import { SendMessageInput, useChat } from "@/features/send-message";
 import { useAppDispatch, useAppSelector } from "@/shared/store";
-import { Button, Grid, Input, Select, Spinner, Typography } from "@/shared/ui";
+import { Flex, Select, Spinner, Typography } from "@/shared/ui";
 
 export const Chat = () => {
   const dispatch = useAppDispatch();
   const { chatId } = useParams() as { chatId: string };
+  const { sendMessage } = useChat();
   const { chatMessages, isLoading, isLoadingAssistent } = useAppSelector(
     messageSliceSelectors.getChatState
   );
   const { modelList, currentChat } = useAppSelector(chatSliceSelectors.getChatState);
-  const { sendMessage } = useChat();
-  const [input, setInput] = useState("");
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const currentModelValue = modelList.find((model) => model.id === currentChat?.model_id);
@@ -78,6 +78,11 @@ export const Chat = () => {
             )}
           </>
         )}
+        {!isLoading && chatMessages.length === 0 && (
+          <EmptyChat $alignItems='center' $justifyContent='center'>
+            <Typography kind='body-l-regular'>В этом чате еще нет сообщений</Typography>
+          </EmptyChat>
+        )}
         {isLoadingAssistent && <Typography kind='body-s-medium'>ИИ печатает...</Typography>}
         <div ref={messagesEndRef} />
       </MessagesContainer>
@@ -89,30 +94,7 @@ export const Chat = () => {
           onChange={(value) => updateModel(value)}
         />
       </div>
-      <Grid $columns='1fr 50px'>
-        <Input
-          type='text'
-          placeholder='Введите сообщение...'
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              setInput("");
-              sendMessage(input);
-            }
-          }}
-        />
-        <Button
-          kind='outlined'
-          onClick={() => {
-            sendMessage(input);
-            setInput("");
-          }}
-          disabled={isLoadingAssistent || !input.trim()}
-        >
-          ➤
-        </Button>
-      </Grid>
+      <SendMessageInput submitHandler={sendMessage} />
     </ChatContainer>
   );
 };
@@ -139,4 +121,9 @@ const MessagesContainer = styled.div`
   flex-direction: column;
   gap: 8px;
   padding-bottom: 16px;
+`;
+
+const EmptyChat = styled(Flex)`
+  width: 100%;
+  height: 100vh;
 `;
