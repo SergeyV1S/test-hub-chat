@@ -9,7 +9,7 @@ import type { IMessageState } from "./types";
 
 export const initialState: IMessageState = {
   isLoading: false,
-  isLoadingSend: false,
+  isLoadingAssistent: false,
   chatMessages: []
 };
 
@@ -19,6 +19,9 @@ export const messageSlice = createSlice({
   reducers: {
     setNewMessage: (state, action: PayloadAction<IMessage>) => {
       state.chatMessages = [...state.chatMessages, action.payload];
+    },
+    setIsLoadingAssistent: (state, action: PayloadAction<boolean>) => {
+      state.isLoadingAssistent = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -34,16 +37,8 @@ export const messageSlice = createSlice({
       )
       .addCase(getChatMessageListActionCreator.rejected, rejectedHandler)
       // Отправить сообщение
-      .addCase(postSendMessageActionCreator.pending, (state) => {
-        state.isLoadingSend = true;
-      })
-      .addCase(postSendMessageActionCreator.fulfilled, (state, action: PayloadAction<IMessage>) => {
-        state.chatMessages = [...state.chatMessages, action.payload];
-        state.isLoadingSend = false;
-      })
       .addCase(postSendMessageActionCreator.rejected, (state, action) => {
         state.error = action.error.message;
-        state.isLoadingSend = false;
       });
   },
   selectors: {

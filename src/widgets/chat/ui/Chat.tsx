@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -10,17 +10,18 @@ import {
 import { messageSliceSelectors } from "@/entity/message";
 import { useChat } from "@/features/send-message";
 import { useAppDispatch, useAppSelector } from "@/shared/store";
-import { Button, Grid, Input, Select, Spinner } from "@/shared/ui";
+import { Button, Grid, Input, Select, Spinner, Typography } from "@/shared/ui";
 
 export const Chat = () => {
   const dispatch = useAppDispatch();
   const { chatId } = useParams() as { chatId: string };
-  const { chatMessages, isLoading, isLoadingSend } = useAppSelector(
+  const { chatMessages, isLoading, isLoadingAssistent } = useAppSelector(
     messageSliceSelectors.getChatState
   );
   const { modelList, currentChat } = useAppSelector(chatSliceSelectors.getChatState);
   const { sendMessage } = useChat();
   const [input, setInput] = useState("");
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const currentModelValue = modelList.find((model) => model.id === currentChat?.model_id);
 
@@ -42,6 +43,16 @@ export const Chat = () => {
     }
   }, []);
 
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatMessages]);
+
   return (
     <ChatContainer>
       <MessagesContainer>
@@ -55,7 +66,8 @@ export const Chat = () => {
             ))}
           </>
         )}
-        {/* {isLoading && <TypingIndicator>ИИ печатает...</TypingIndicator>} */}
+        {isLoadingAssistent && <Typography kind='body-s-medium'>ИИ печатает...</Typography>}
+        <div ref={messagesEndRef} />
       </MessagesContainer>
       <div style={{ marginBottom: 14 }}>
         <Select
@@ -71,7 +83,12 @@ export const Chat = () => {
           placeholder='Введите сообщение...'
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && sendMessage(input)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              setInput("");
+              sendMessage(input);
+            }
+          }}
         />
         <Button
           kind='outlined'
@@ -79,7 +96,7 @@ export const Chat = () => {
             sendMessage(input);
             setInput("");
           }}
-          disabled={isLoadingSend || !input.trim()}
+          disabled={isLoadingAssistent || !input.trim()}
         >
           ➤
         </Button>
@@ -120,10 +137,3 @@ const MessageBubble = styled.div<{ $sender: "user" | "assistant" }>`
   color: #fff;
   align-self: ${({ $sender }) => ($sender === "user" ? "flex-end" : "flex-start")};
 `;
-
-// const TypingIndicator = styled.div
-//   font-size: 14px;
-//   color: #888;
-//   text-align: left;
-//   margin-left: 10px;
-// `;
